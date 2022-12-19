@@ -1,7 +1,8 @@
-export default function SignupForm({ onSubmit, setLoginOrSignup }) {
-  function handleToLogin() {
-    setLoginOrSignup("Log in");
-  }
+import { useContext } from "react";
+import { LoginSignupContext } from "./LoginSignupContext";
+
+export default function SignupForm() {
+  const { onSubmit, handleToLogin } = useContext(LoginSignupContext);
 
   return (
     <>
@@ -22,8 +23,8 @@ export default function SignupForm({ onSubmit, setLoginOrSignup }) {
         <input type="password" id="password" name="password" required />
         <label htmlFor="password2">Retype password</label>
         <input type="password" id="password2" name="password2" required />
+        <button onSubmit={(e) => onSubmit(e)}>Sign me up</button>
       </form>
-      <button onClick={onSubmit}>Sign me up</button>
     </>
   );
 }

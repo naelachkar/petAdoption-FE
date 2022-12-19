@@ -1,15 +1,10 @@
 import "./LoginSignup.css";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "./Modal";
+import { LoginSignupContext } from "./LoginSignupContext";
 
 export default function LoginSignup() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loginOrSignup, setLoginOrSignup] = useState("");
-
-  function toggleModal(arg) {
-    setIsModalOpen(!isModalOpen);
-    setLoginOrSignup(arg.target.id);
-  }
+  const { toggleModal } = useContext(LoginSignupContext);
 
   return (
     <div className="button-bar">
@@ -20,12 +15,7 @@ export default function LoginSignup() {
         Sign up
       </button>
 
-      <Modal
-        isModalOpen={isModalOpen}
-        toggleModal={toggleModal}
-        loginOrSignup={loginOrSignup}
-        setLoginOrSignup={setLoginOrSignup}
-      />
+      <Modal />
     </div>
   );
 }
