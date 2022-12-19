@@ -13,8 +13,12 @@ export default function LoginSignup() {
 
   return (
     <div className="button-bar">
-      <button id="login" onClick={toggleModal}>Log in</button>
-      <button id="signup" onClick={toggleModal}>Sign up</button>
+      <button id="Log in" onClick={toggleModal}>
+        Log in
+      </button>
+      <button id="Sign up" onClick={toggleModal}>
+        Sign up
+      </button>
 
       <Modal
         isModalOpen={isModalOpen}

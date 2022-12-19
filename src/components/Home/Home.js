@@ -1,4 +1,4 @@
-import "./Home.css"
+import "./Home.css";
 import LoginSignup from "./LoginSignup/LoginSignup";
 
 export default function Home() {
