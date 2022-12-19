@@ -1,18 +1,31 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import { UserContext } from "../../../UserContext";
 
 export const LoginSignupContext = createContext();
 
 export default function LoginSignupContextWrapper({ children }) {
+  const { password, confirmPassword, setArePasswordsDifferent } = useContext(UserContext);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginOrSignup, setLoginOrSignup] = useState("");
 
-  function toggleModal(arg) {
+  function toggleModal(e) {
     setIsModalOpen(!isModalOpen);
-    setLoginOrSignup(arg.target.id);
+    setLoginOrSignup(e.target.id);
   }
 
-  function onSubmission(e) {
+  function onLoginSubmit(e) {
     e.preventDefault();
+    alert("Submitted");
+  }
+
+  function onSignupSubmit(e) {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setArePasswordsDifferent(true)
+      return
+    }
+    setArePasswordsDifferent(false)
     alert("Submitted");
   }
 
@@ -32,7 +45,8 @@ export default function LoginSignupContextWrapper({ children }) {
         loginOrSignup,
         setLoginOrSignup,
         toggleModal,
-        onSubmission,
+        onLoginSubmit,
+        onSignupSubmit,
         handleToLogin,
         handleToSignup,
       }}>

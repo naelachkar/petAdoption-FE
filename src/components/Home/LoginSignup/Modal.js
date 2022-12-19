@@ -8,7 +8,7 @@ export default function Modal() {
     useContext(LoginSignupContext);
 
   return (
-    <div>
+    <>
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal">
@@ -18,12 +18,12 @@ export default function Modal() {
             {loginOrSignup === "Log in" ? <LoginForm /> : <SignupForm />}
             <div className="close" onClick={toggleModal}>
               {loginOrSignup === "Log in"
-                ? "Maybe later."
-                : "Not today, thanks."}
+                ? "Maybe later"
+                : "Not today, thanks"}
             </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

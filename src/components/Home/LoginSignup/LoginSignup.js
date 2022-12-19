@@ -7,15 +7,16 @@ export default function LoginSignup() {
   const { toggleModal } = useContext(LoginSignupContext);
 
   return (
-    <div className="button-bar">
-      <button id="Log in" onClick={toggleModal}>
-        Log in
-      </button>
-      <button id="Sign up" onClick={toggleModal}>
-        Sign up
-      </button>
-
+    <>
+      <div className="button-bar">
+        <button id="Log in" onClick={toggleModal}>
+          Log in
+        </button>
+        <button id="Sign up" onClick={toggleModal}>
+          Sign up
+        </button>
+      </div>
       <Modal />
-    </div>
+    </>
   );
 }

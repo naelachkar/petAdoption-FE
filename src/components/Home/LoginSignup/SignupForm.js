@@ -1,8 +1,24 @@
 import { useContext } from "react";
+import { UserContext } from "../../../UserContext";
 import { LoginSignupContext } from "./LoginSignupContext";
 
 export default function SignupForm() {
-  const { onSubmission, handleToLogin } = useContext(LoginSignupContext);
+  const { onSignupSubmit, handleToLogin } = useContext(LoginSignupContext);
+  const {
+    firstName,
+    handleFirstNameChange,
+    lastName,
+    handleLastNameChange,
+    phoneNumber,
+    handlePhoneNumberChange,
+    email,
+    handleEmailChange,
+    password,
+    handlePasswordChange,
+    confirmPassword,
+    handleConfirmPasswordChange,
+    arePasswordsDifferent,
+  } = useContext(UserContext);
 
   return (
     <>
@@ -10,20 +26,72 @@ export default function SignupForm() {
       <span>
         Already have one? <a onClick={handleToLogin}>Log in here</a>
       </span>
-      <form onSubmit={onSubmission}>
+      <form onSubmit={onSignupSubmit}>
         <label htmlFor="firstName">First name</label>
-        <input type="name" id="firstName" name="firstName" required />
+        <input
+          type="name"
+          id="firstName"
+          name="firstName"
+          onChange={handleFirstNameChange}
+          required
+        />
         <label htmlFor="lastName">Last name</label>
-        <input type="name" id="lastName" name="lastName" required />
+        <input
+          type="name"
+          id="lastName"
+          name="lastName"
+          onChange={handleLastNameChange}
+          required
+        />
         <label htmlFor="phone">Phone number</label>
-        <input type="tel" id="phone" name="phone" required />
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          onChange={handlePhoneNumberChange}
+          required
+        />
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" required />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          onChange={handleEmailChange}
+          required
+        />
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" required />
-        <label htmlFor="password2">Retype password</label>
-        <input type="password" id="password2" name="password2" required />
-        <button type="submit">Sign me up</button>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          onChange={handlePasswordChange}
+          required
+        />
+        <label htmlFor="password2">Confirm password</label>
+        <input
+          type="password"
+          id="password2"
+          name="password2"
+          onChange={handleConfirmPasswordChange}
+          required
+        />
+        <div
+          className="alert"
+          style={{ visibility: arePasswordsDifferent ? "visible" : "hidden" }}>
+          Passwords don't match
+        </div>
+        <button
+          type="submit"
+          disabled={
+            !firstName ||
+            !lastName ||
+            !phoneNumber ||
+            !email ||
+            !password ||
+            !confirmPassword
+          }>
+          Sign me up
+        </button>
       </form>
     </>
   );
