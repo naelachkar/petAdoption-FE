@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { LoginSignupContext } from "./LoginSignupContext";
 
 export default function SignupForm() {
-  const { onSubmit, handleToLogin } = useContext(LoginSignupContext);
+  const { onSubmission, handleToLogin } = useContext(LoginSignupContext);
 
   return (
     <>
@@ -10,7 +10,7 @@ export default function SignupForm() {
       <span>
         Already have one? <a onClick={handleToLogin}>Log in here</a>
       </span>
-      <form>
+      <form onSubmit={onSubmission}>
         <label htmlFor="firstName">First name</label>
         <input type="name" id="firstName" name="firstName" required />
         <label htmlFor="lastName">Last name</label>
@@ -23,7 +23,7 @@ export default function SignupForm() {
         <input type="password" id="password" name="password" required />
         <label htmlFor="password2">Retype password</label>
         <input type="password" id="password2" name="password2" required />
-        <button onSubmit={(e) => onSubmit(e)}>Sign me up</button>
+        <button type="submit">Sign me up</button>
       </form>
     </>
   );

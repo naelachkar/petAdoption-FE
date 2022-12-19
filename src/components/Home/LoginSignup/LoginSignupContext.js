@@ -11,7 +11,7 @@ export default function LoginSignupContextWrapper({ children }) {
     setLoginOrSignup(arg.target.id);
   }
 
-  function onSubmit(e) {
+  function onSubmission(e) {
     e.preventDefault();
     alert("Submitted");
   }
@@ -32,7 +32,7 @@ export default function LoginSignupContextWrapper({ children }) {
         loginOrSignup,
         setLoginOrSignup,
         toggleModal,
-        onSubmit,
+        onSubmission,
         handleToLogin,
         handleToSignup,
       }}>
