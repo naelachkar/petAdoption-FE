@@ -1,19 +1,26 @@
-import "./LoginSignup.css"
+import "./LoginSignup.css";
+import React, { useState } from "react";
+import Modal from "./Modal";
 
 export default function LoginSignup() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loginOrSignup, setLoginOrSignup] = useState("");
 
-    function handleLogin() {
-        alert("Log in")
-    }
-
-    function handleSignup() {
-        alert("Sign up")
-    }
+  function toggleModal(arg) {
+    setIsModalOpen(!isModalOpen);
+    setLoginOrSignup(arg.target.id);
+  }
 
   return (
     <div className="button-bar">
-      <button onClick={handleLogin}>Log in</button>
-      <button onClick={handleSignup}>Sign up</button>
+      <button id="login" onClick={toggleModal}>Log in</button>
+      <button id="signup" onClick={toggleModal}>Sign up</button>
+
+      <Modal
+        isModalOpen={isModalOpen}
+        toggleModal={toggleModal}
+        loginOrSignup={loginOrSignup}
+      />
     </div>
   );
 }
