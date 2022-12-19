@@ -24,6 +24,7 @@ export default function LoginSignup() {
         isModalOpen={isModalOpen}
         toggleModal={toggleModal}
         loginOrSignup={loginOrSignup}
+        setLoginOrSignup={setLoginOrSignup}
       />
     </div>
   );
