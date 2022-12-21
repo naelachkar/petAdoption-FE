@@ -1,18 +1,21 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Welcome/Welcome";
+import Welcome from "./components/Welcome/Welcome";
+import Home from "./components/Home/Home";
 import UserContextWrapper from "./UserContext";
+import ProfileSettings from "./components/ProfileSettings/ProfileSettings";
 
-function App() {
+
+export default function App() {
   return (
     <div className="App">
       <UserContextWrapper>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Welcome />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/profileSettings" element={<ProfileSettings />} />
         </Routes>
       </UserContextWrapper>
     </div>
   );
 }
-
-export default App;

@@ -4,7 +4,7 @@ import LoginSignupContextWrapper from "./LoginSignup/LoginSignupContext";
 
 export default function Home() {
   return (
-    <div className="home">
+    <div className="welcome">
       <h1>Pet Adoption Agency</h1>
       <article>This is the website of a pet adoption agency.</article>
       <LoginSignupContextWrapper>
