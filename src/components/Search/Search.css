@@ -1,0 +1,13 @@
+.petList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.petCard {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: clamp(3rem, 5rem, 8rem);
+}
