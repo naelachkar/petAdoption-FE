@@ -8,14 +8,14 @@ export default function LoginSignup() {
 
   return (
     <>
-      <div className="button-bar">
+      <nav>
         <button id="Log in" onClick={toggleModal}>
           Log in
         </button>
         <button id="Sign up" onClick={toggleModal}>
           Sign up
         </button>
-      </div>
+      </nav>
       <Modal />
     </>
   );
