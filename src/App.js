@@ -2,9 +2,9 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Welcome from "./components/Welcome/Welcome";
 import Home from "./components/Home/Home";
+import Search from "./components/Search/Search";
 import UserContextWrapper from "./UserContext";
 import ProfileSettings from "./components/ProfileSettings/ProfileSettings";
-
 
 export default function App() {
   return (
@@ -14,6 +14,7 @@ export default function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profileSettings" element={<ProfileSettings />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </UserContextWrapper>
     </div>

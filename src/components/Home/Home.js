@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <h1>Hello firstName lastName</h1>
       <nav>
-        <button>Search</button>
+        <button onClick={() => navigate("/search")}>Search</button>
         <button>My Pets</button>
         <button onClick={() => navigate("/profileSettings")}>
           Profile settings
