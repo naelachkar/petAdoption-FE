@@ -1,4 +1,4 @@
-import "./Home.css";
+import "./Welcome.css";
 import LoginSignup from "./LoginSignup/LoginSignup";
 import LoginSignupContextWrapper from "./LoginSignup/LoginSignupContext";
 
