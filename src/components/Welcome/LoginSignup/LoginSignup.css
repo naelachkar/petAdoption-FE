@@ -35,22 +35,6 @@ form {
     font-weight: bold;
 }
 
-input {
-  margin-bottom: 1rem;
-  border: 1px solid black;
-  padding: 0.875rem 0.75rem;
-}
-
-input:focus {
-  outline: none;
-  border-color: #0879bf;
-}
-
-label {
-  margin-bottom: 0.125rem;
-  align-self: flex-start;
-}
-
 .close {
   color: black;
   cursor: pointer;

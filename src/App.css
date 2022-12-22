@@ -36,6 +36,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 100vw;
 }
 
 h1 {
@@ -64,4 +65,20 @@ button:disabled {
 
 button:disabled:hover{
   background-color: #000;
+}
+
+input, select {
+  margin-bottom: 1rem;
+  border: 1px solid black;
+  padding: 0.875rem 0.75rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #0879bf;
+}
+
+label {
+  margin-bottom: 0.125rem;
+  align-self: flex-start;
 }

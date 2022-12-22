@@ -1,13 +1,46 @@
+.search-page {
+  margin-top: 2rem;
+}
+
 .petList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem;
+  border-width: 2px;
+  border-style: groove;
+  border-color: rgb(192, 192, 192);
+  margin: 0;
+  max-width: 100vw;
 }
 
 .petCard {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    width: clamp(3rem, 5rem, 8rem);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  flex-grow: 1;
+}
+
+fieldset {
+  padding: 1em;
+  display: flex;
+  gap: 0.5rem;
+}
+
+fieldset label,
+fieldset input,
+fieldset select {
+  margin: 0;
+  align-self: center;
+}
+
+fieldset input {
+    width: 5rem;
+}
+
+legend {
+  text-align: start;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
 }

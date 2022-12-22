@@ -21,6 +21,8 @@ export default function PetsContextWrapper({ children }) {
   }, []);
 
   return (
-    <PetsContext.Provider value={{petList}}>{children}</PetsContext.Provider>
+    <PetsContext.Provider value={{ petList, getAllPets }}>
+      {children}
+    </PetsContext.Provider>
   );
 }

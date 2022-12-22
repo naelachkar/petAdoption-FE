@@ -1,19 +1,20 @@
 import { useContext } from "react";
-import { PetsContext } from "../../PetsContext";
+import { SearchContext } from "./SearchContext";
 
 export default function SearchResults() {
-  const { petList } = useContext(PetsContext);
+  const { searchedPets } = useContext(SearchContext);
 
-  return (
+  return searchedPets.length !== 0 ? (
     <div className="petList">
-      {petList?.map(({ type, name }) => {
+      {searchedPets.map(({ type, name, breed }) => {
         return (
           <div className="petCard">
             <span>{type}</span>
             <span>{name}</span>
+            <span>{breed}</span>
           </div>
         );
       })}
     </div>
-  );
+  ) : null;
 }
