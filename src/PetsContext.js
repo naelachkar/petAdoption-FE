@@ -10,7 +10,6 @@ export default function PetsContextWrapper({ children }) {
   async function getAllPets() {
     try {
       const allPets = await axios.get("http://localhost:8080/pets");
-      console.log(allPets.data)
       setPetList(allPets.data);
     } catch (err) {
       console.error(err);
