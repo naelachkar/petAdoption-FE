@@ -18,6 +18,19 @@ export default function UserContextWrapper({ children }) {
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
 
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("currentUser")) || null
+  );
+  const loggingInLocal = () => {
+    setCurrentUser(email);
+    localStorage.setItem("currentUser", JSON.stringify(email));
+  };
+
+  const loggingOutLocal = () => {
+    setCurrentUser(undefined);
+    localStorage.removeItem("currentUser");
+  };
+
   useEffect(() => {
     setArePasswordsDifferent(false);
   }, [password, confirmPassword]);
@@ -38,7 +51,10 @@ export default function UserContextWrapper({ children }) {
         confirmPassword,
         handleConfirmPasswordChange,
         arePasswordsDifferent,
-        setArePasswordsDifferent
+        setArePasswordsDifferent,
+        loggingInLocal,
+        currentUser,
+        loggingOutLocal,
       }}>
       {children}
     </UserContext.Provider>
