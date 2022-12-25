@@ -16,7 +16,7 @@ export default function SearchFormSimple() {
             defaultValue="void"
             onChange={handleChange}>
             <option value="void" disabled hidden></option>
-            <option value="all">All</option>
+            <option value="">All</option>
             <option value="Dog">Dog</option>
             <option value="Cat">Cat</option>
           </select>

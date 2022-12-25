@@ -15,7 +15,7 @@ export default function SearchFormAdvanced() {
           defaultValue="void"
           onChange={handleChange}>
           <option value="void" disabled hidden></option>
-          <option value="all">All</option>
+          <option value="">All</option>
           <option value="Dog">Dog</option>
           <option value="Cat">Cat</option>
         </select>
@@ -28,7 +28,7 @@ export default function SearchFormAdvanced() {
           defaultValue="void"
           onChange={handleChange}>
           <option value="void" disabled hidden></option>
-          <option value="all">All</option>
+          <option value="">All</option>
           <option value="Available">Available</option>
           <option value="Fostered">Fostered</option>
           <option value="Adopted">Adopted</option>
