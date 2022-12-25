@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -6,13 +7,7 @@ export default function Home() {
   return (
     <>
       <h1>Hello firstName lastName</h1>
-      <nav>
-        <button onClick={() => navigate("/search")}>Search</button>
-        <button>My Pets</button>
-        <button onClick={() => navigate("/profileSettings")}>
-          Profile settings
-        </button>
-      </nav>
+      <NavBar />
     </>
   );
 }

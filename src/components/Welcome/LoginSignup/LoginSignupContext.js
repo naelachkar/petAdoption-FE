@@ -1,10 +1,19 @@
 import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../UserContext";
 
 export const LoginSignupContext = createContext();
 
 export default function LoginSignupContextWrapper({ children }) {
-  const { password, confirmPassword, setArePasswordsDifferent } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const {
+    password,
+    confirmPassword,
+    setArePasswordsDifferent,
+    loggingInLocal,
+    loggingOutLocal,
+  } = useContext(UserContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginOrSignup, setLoginOrSignup] = useState("");
@@ -16,16 +25,23 @@ export default function LoginSignupContextWrapper({ children }) {
 
   function onLoginSubmit(e) {
     e.preventDefault();
-    alert("Submitted");
+    loggingInLocal();
+    setIsModalOpen(false);
+    navigate("/home");
+  }
+
+  function onLogOutSubmit() {
+    loggingOutLocal();
+    navigate("/");
   }
 
   function onSignupSubmit(e) {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setArePasswordsDifferent(true)
-      return
+      setArePasswordsDifferent(true);
+      return;
     }
-    setArePasswordsDifferent(false)
+    setArePasswordsDifferent(false);
     alert("Submitted");
   }
 
@@ -49,6 +65,7 @@ export default function LoginSignupContextWrapper({ children }) {
         onSignupSubmit,
         handleToLogin,
         handleToSignup,
+        onLogOutSubmit,
       }}>
       {children}
     </LoginSignupContext.Provider>

@@ -1,0 +1,25 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../UserContext";
+import { LoginSignupContext } from "../Welcome/LoginSignup/LoginSignupContext";
+
+export default function NavBar() {
+  const { currentUser } = useContext(UserContext);
+  const { toggleModal, onLogOutSubmit } = useContext(LoginSignupContext);
+  const navigate = useNavigate();
+
+  return currentUser ? (
+    <nav>
+      <button onClick={() => navigate("/search")}>Search</button>
+      <button>My Pets</button>
+      <button onClick={() => navigate("/profileSettings")}>Profile Settings</button>
+      <button onClick={onLogOutSubmit}>Log out</button>
+    </nav>
+  ) : (
+    <nav>
+      <button onClick={() => navigate("/search")}>Search</button>
+      <button id="Log in" onClick={toggleModal}>Log in</button>
+      <button id="Sign up" onClick={toggleModal}>Sign up</button>
+    </nav>
+  );
+}
