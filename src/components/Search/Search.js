@@ -1,23 +1,16 @@
 import "./Search.css";
-import { useContext } from "react";
-import { PetsContext } from "../../PetsContext";
+import SearchContextWrapper from "./SearchContext";
+import SearchForm from "./SearchForm/SearchForm";
+import SearchNavBar from "./SearchNavBar";
+import SearchResults from "./SearchResults";
 
 export default function Search() {
-  const { petList } = useContext(PetsContext);
-
   return (
-    <>
+    <SearchContextWrapper>
       <h1>Search</h1>
-      <div className="petList">
-        {petList.map(({ type, name }) => {
-          return (
-            <div className="petCard">
-              <span>{type}</span>
-              <span>{name}</span>
-            </div>
-          );
-        })}
-      </div>
-    </>
+      <SearchNavBar />
+      <SearchForm />
+      <SearchResults />
+    </SearchContextWrapper>
   );
 }
