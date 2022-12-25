@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { PetsContext } from "../../PetsContext";
 
 export const SearchContext = createContext();
@@ -6,7 +6,7 @@ export const SearchContext = createContext();
 export default function SearchContextWrapper({ children }) {
   const { getAllPets, petList } = useContext(PetsContext);
 
-  const [advancedSearch, setAdvancedSearch] = useState(false);
+  const [advancedSearch, setAdvancedSearch] = useState(JSON.parse(localStorage.getItem("search")) || false);
   const [inputs, setInputs] = useState({});
   const [searchedPets, setSearchPets] = useState([]);
 
@@ -24,17 +24,20 @@ export default function SearchContextWrapper({ children }) {
     await getAllPets();
     const filtered = petList.filter((pet) => {
       for (const searchParam in inputs) {
-        // TODO stringify height and weight
-        // TODO add a function to convert everything to lower case
-        if (!pet[searchParam].includes(inputs[searchParam])) {
+        const petParam = pet[searchParam].toString().toLowerCase();
+        const inputsParam = inputs[searchParam].toString().toLowerCase();
+        if (!petParam.includes(inputsParam)) {
           return false;
         }
       }
       return true;
     })
-    console.log(filtered)
     setSearchPets(filtered);
   }
+
+  useEffect(() => {
+    localStorage.setItem("search", JSON.stringify(advancedSearch))
+  }, [advancedSearch])
 
   return (
     <SearchContext.Provider

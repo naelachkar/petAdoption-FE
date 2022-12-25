@@ -6,9 +6,9 @@ export default function SearchResults() {
 
   return searchedPets.length !== 0 ? (
     <div className="petList">
-      {searchedPets.map(({ type, name, breed }) => {
+      {searchedPets.map(({ type, name, breed, id }, index) => {
         return (
-          <div className="petCard">
+          <div key={id+index} className="petCard">
             <span>{type}</span>
             <span>{name}</span>
             <span>{breed}</span>
