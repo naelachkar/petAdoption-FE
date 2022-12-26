@@ -4,10 +4,10 @@ import Welcome from "./components/Welcome/Welcome";
 import Home from "./components/Home/Home";
 import Search from "./components/Search/Search";
 import UserContextWrapper from "./UserContext";
-import ProfileSettings from "./components/ProfileSettings/ProfileSettings";
 import PetsContextWrapper from "./PetsContext";
 import ProtectedRoute from "./components/Utilities/ProtectedRoute";
 import LoginSignupContextWrapper from "./components/LoginSignup/LoginSignupContext";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 export default function App() {
   return (
@@ -26,10 +26,10 @@ export default function App() {
                 }
               />
               <Route
-                path="/profileSettings"
+                path="/profilePage"
                 element={
                   <ProtectedRoute>
-                    <ProfileSettings />
+                    <ProfilePage />
                   </ProtectedRoute>
                 }
               />
