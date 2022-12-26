@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
@@ -21,9 +22,22 @@ export default function UserContextWrapper({ children }) {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || null
   );
-  const loggingInLocal = () => {
-    setCurrentUser(email);
-    localStorage.setItem("currentUser", JSON.stringify(email));
+
+  const loggingInLocal = async () => {
+    try {
+      const res = await axios.post("http://localhost:8080/login", {
+        email,
+        password,
+      });
+      setCurrentUser(email);
+      localStorage.setItem("currentUser", JSON.stringify(res.data.email));
+      localStorage.setItem("firstName", JSON.stringify(res.data.firstName));
+      localStorage.setItem("lastName", JSON.stringify(res.data.lastName));
+      localStorage.setItem("phoneNumber", JSON.stringify(res.data.phoneNumber));
+      localStorage.setItem("email", JSON.stringify(res.data.email));
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const loggingOutLocal = () => {

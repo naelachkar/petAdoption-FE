@@ -11,6 +11,7 @@ export default function NavBar() {
   return currentUser ? (
     <nav>
       <button onClick={() => navigate("/search")}>Search</button>
+      <button onClick={() => navigate("/home")}>Home</button>
       <button>My Pets</button>
       <button onClick={() => navigate("/profilePage")}>
         Profile Page

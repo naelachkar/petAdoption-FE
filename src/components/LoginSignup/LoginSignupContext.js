@@ -23,9 +23,9 @@ export default function LoginSignupContextWrapper({ children }) {
     setLoginOrSignup(e.target.id);
   }
 
-  function onLoginSubmit(e) {
+  async function onLoginSubmit(e) {
     e.preventDefault();
-    loggingInLocal();
+    await loggingInLocal();
     setIsModalOpen(false);
     navigate("/home");
   }
