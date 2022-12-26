@@ -47,7 +47,7 @@ export default function SearchFormAdvanced() {
           id="weight"
           onChange={handleChange}
         />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Search" />
       </fieldset>
     </form>
   );

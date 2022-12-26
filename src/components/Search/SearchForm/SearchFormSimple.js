@@ -20,7 +20,7 @@ export default function SearchFormSimple() {
             <option value="Dog">Dog</option>
             <option value="Cat">Cat</option>
           </select>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Search" />
         </fieldset>
       </form>
     </>

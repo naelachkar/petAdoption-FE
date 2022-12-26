@@ -2,6 +2,11 @@
   margin-top: 2rem;
 }
 
+.search-bar {
+  display: flex;
+  margin-top: 0.125rem;
+}
+
 .petList {
   display: flex;
   flex-wrap: wrap;
