@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 
 export default function ProfileSettings() {

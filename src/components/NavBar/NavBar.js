@@ -12,14 +12,20 @@ export default function NavBar() {
     <nav>
       <button onClick={() => navigate("/search")}>Search</button>
       <button>My Pets</button>
-      <button onClick={() => navigate("/profileSettings")}>Profile Settings</button>
+      <button onClick={() => navigate("/profileSettings")}>
+        Profile Settings
+      </button>
       <button onClick={onLogOutSubmit}>Log out</button>
     </nav>
   ) : (
     <nav>
       <button onClick={() => navigate("/search")}>Search</button>
-      <button id="Log in" onClick={toggleModal}>Log in</button>
-      <button id="Sign up" onClick={toggleModal}>Sign up</button>
+      <button id="Log in" onClick={toggleModal}>
+        Log in
+      </button>
+      <button id="Sign up" onClick={toggleModal}>
+        Sign up
+      </button>
     </nav>
   );
 }

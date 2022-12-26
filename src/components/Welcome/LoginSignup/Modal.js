@@ -17,9 +17,7 @@ export default function Modal() {
             </div>
             {loginOrSignup === "Log in" ? <LoginForm /> : <SignupForm />}
             <div className="close" onClick={toggleModal}>
-              {loginOrSignup === "Log in"
-                ? "Maybe later"
-                : "Not today, thanks"}
+              {loginOrSignup === "Log in" ? "Maybe later" : "Not today, thanks"}
             </div>
           </div>
         </div>

@@ -1,6 +1,5 @@
 import "./Welcome.css";
 import LoginSignup from "./LoginSignup/LoginSignup";
-import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   return (

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { SearchContext } from "../SearchContext";
 
 export default function SearchFormSimple() {
-  const { handleSimpleSearch, handleChange, handleSearch } = useContext(SearchContext);
+  const { handleChange, handleSearch } = useContext(SearchContext);
 
   return (
     <>

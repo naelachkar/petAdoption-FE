@@ -25,7 +25,14 @@ export default function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="/profileSettings" element={<ProfileSettings />} />
+              <Route
+                path="/profileSettings"
+                element={
+                  <ProtectedRoute>
+                    <ProfileSettings />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/search" element={<Search />} />
             </Routes>
           </PetsContextWrapper>

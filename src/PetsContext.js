@@ -1,5 +1,4 @@
 import axios from "axios";
-import { all } from "axios";
 import { createContext, useEffect, useState } from "react";
 
 export const PetsContext = createContext();

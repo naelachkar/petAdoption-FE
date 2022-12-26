@@ -4,13 +4,8 @@ import { LoginSignupContext } from "./LoginSignupContext";
 
 export default function LoginForm() {
   const { onLoginSubmit, handleToSignup } = useContext(LoginSignupContext);
-  const {
-    email,
-    handleEmailChange,
-    password,
-    handlePasswordChange,
-    handleConfirmPasswordChange,
-  } = useContext(UserContext);
+  const { email, handleEmailChange, password, handlePasswordChange } =
+    useContext(UserContext);
 
   return (
     <>
