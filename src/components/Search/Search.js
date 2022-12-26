@@ -1,5 +1,5 @@
+import LoginSignup from "../LoginSignup/LoginSignup";
 import NavBar from "../NavBar/NavBar";
-import Modal from "../Welcome/LoginSignup/Modal";
 import "./Search.css";
 import SearchContextWrapper from "./SearchContext";
 import SearchForm from "./SearchForm/SearchForm";
@@ -14,7 +14,7 @@ export default function Search() {
         <SearchForm />
         <SearchResults />
       </SearchContextWrapper>
-      <Modal />
+      <LoginSignup />
     </>
   );
 }

@@ -1,5 +1,5 @@
+import LoginSignup from "../LoginSignup/LoginSignup";
 import "./Welcome.css";
-import LoginSignup from "./LoginSignup/LoginSignup";
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
-import { LoginSignupContext } from "../Welcome/LoginSignup/LoginSignupContext";
+import { LoginSignupContext } from "../LoginSignup/LoginSignupContext";
 
 export default function NavBar() {
   const { currentUser } = useContext(UserContext);
