@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { SearchContext } from "../SearchContext";
 
 export default function SearchFormSimple() {
-  const { handleChange, handleSearch } = useContext(SearchContext);
+  const { handleChange, handleSearch, inputs } = useContext(SearchContext);
 
   return (
     <>
@@ -13,9 +13,8 @@ export default function SearchFormSimple() {
           <select
             name="type"
             id="pet-select"
-            defaultValue="void"
+            defaultValue={inputs.type}
             onChange={handleChange}>
-            <option value="void" disabled hidden></option>
             <option value="">All</option>
             <option value="Dog">Dog</option>
             <option value="Cat">Cat</option>

@@ -78,6 +78,7 @@ export default function SearchContextWrapper({ children }) {
         getPetById,
         currentPet,
         setCurrentPet,
+        inputs,
       }}>
       {children}
     </SearchContext.Provider>
