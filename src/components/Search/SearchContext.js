@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const SearchContext = createContext();
 
@@ -10,7 +10,8 @@ export default function SearchContextWrapper({ children }) {
   const [inputs, setInputs] = useState({});
   const [petList, setPetList] = useState([]);
   const [searchedPets, setSearchPets] = useState([]);
-  
+  const [currentPet, setCurrentPet] = useState()
+
   async function getAllPets() {
     try {
       const allPets = await axios.get("http://localhost:8080/pets");
@@ -19,6 +20,16 @@ export default function SearchContextWrapper({ children }) {
       console.error(err);
     }
   }
+
+  async function getPetById(id) {
+    try {
+      const petById = await axios.get(`http://localhost:8080/pets/:${id}`);
+      setCurrentPet(petById.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
 
   useEffect(() => {
     getAllPets();
@@ -64,6 +75,9 @@ export default function SearchContextWrapper({ children }) {
         handleSearch,
         petList,
         getAllPets,
+        getPetById,
+        currentPet,
+        setCurrentPet,
       }}>
       {children}
     </SearchContext.Provider>

@@ -1,12 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { SearchContext } from "../Search/SearchContext";
 
 export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
-  const { searchedPets } = useContext(SearchContext);
-  const currentPet = searchedPets.find((pet) => pet._id === currentId);
+  const { getPetById, currentPet, setCurrentPet } = useContext(SearchContext);
+
+  useEffect(() => {
+    getPetById(currentId);
+  }, []);
+
+  if (!currentPet) return;
 
   return (
     <>
@@ -20,6 +25,7 @@ export default function Pet() {
         <li>Weight: {currentPet.weight}cm</li>
         <li>Hypoallergenic: {currentPet.hypoallergenic ? "Yes" : "No"}</li>
       </ul>
+      {currentPet.bio ? <article className="bio">{currentPet.bio}</article> : null}
     </>
   );
 }
