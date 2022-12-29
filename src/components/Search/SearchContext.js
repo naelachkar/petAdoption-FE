@@ -1,14 +1,28 @@
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { PetsContext } from "../../PetsContext";
 
 export const SearchContext = createContext();
 
 export default function SearchContextWrapper({ children }) {
-  const { getAllPets, petList } = useContext(PetsContext);
-
-  const [advancedSearch, setAdvancedSearch] = useState(JSON.parse(localStorage.getItem("search")) || false);
+  const [advancedSearch, setAdvancedSearch] = useState(
+    JSON.parse(localStorage.getItem("search")) || false
+  );
   const [inputs, setInputs] = useState({});
+  const [petList, setPetList] = useState([]);
   const [searchedPets, setSearchPets] = useState([]);
+  
+  async function getAllPets() {
+    try {
+      const allPets = await axios.get("http://localhost:8080/pets");
+      setPetList(allPets.data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  useEffect(() => {
+    getAllPets();
+  }, []);
 
   function toggleSearchType() {
     setAdvancedSearch(!advancedSearch);
@@ -31,13 +45,13 @@ export default function SearchContextWrapper({ children }) {
         }
       }
       return true;
-    })
+    });
     setSearchPets(filtered);
   }
 
   useEffect(() => {
-    localStorage.setItem("search", JSON.stringify(advancedSearch))
-  }, [advancedSearch])
+    localStorage.setItem("search", JSON.stringify(advancedSearch));
+  }, [advancedSearch]);
 
   return (
     <SearchContext.Provider
@@ -48,6 +62,8 @@ export default function SearchContextWrapper({ children }) {
         handleChange,
         searchedPets,
         handleSearch,
+        petList,
+        getAllPets,
       }}>
       {children}
     </SearchContext.Provider>
