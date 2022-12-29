@@ -4,17 +4,18 @@ import Welcome from "./components/Welcome/Welcome";
 import Home from "./components/Home/Home";
 import Search from "./components/Search/Search";
 import UserContextWrapper from "./UserContext";
-import ProfileSettings from "./components/ProfileSettings/ProfileSettings";
-import PetsContextWrapper from "./PetsContext";
 import ProtectedRoute from "./components/Utilities/ProtectedRoute";
 import LoginSignupContextWrapper from "./components/LoginSignup/LoginSignupContext";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
+import Pet from "./components/Pet/Pet";
+import SearchContextWrapper from "./components/Search/SearchContext";
 
 export default function App() {
   return (
     <div className="App">
       <UserContextWrapper>
         <LoginSignupContextWrapper>
-          <PetsContextWrapper>
+          <SearchContextWrapper>
             <Routes>
               <Route path="/" element={<Welcome />} />
               <Route
@@ -26,16 +27,17 @@ export default function App() {
                 }
               />
               <Route
-                path="/profileSettings"
+                path="/profilePage"
                 element={
                   <ProtectedRoute>
-                    <ProfileSettings />
+                    <ProfilePage />
                   </ProtectedRoute>
                 }
               />
               <Route path="/search" element={<Search />} />
+              <Route path="/pet" element={<Pet />} />
             </Routes>
-          </PetsContextWrapper>
+          </SearchContextWrapper>
         </LoginSignupContextWrapper>
       </UserContextWrapper>
     </div>

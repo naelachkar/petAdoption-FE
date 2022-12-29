@@ -9,13 +9,11 @@ import SearchResults from "./SearchResults";
 export default function Search() {
   return (
     <>
-      <SearchContextWrapper>
-        <h1>Search</h1>
-        <NavBar />
-        <SearchBar />
-        <SearchForm />
-        <SearchResults />
-      </SearchContextWrapper>
+      <h1>Search</h1>
+      <NavBar />
+      <SearchBar />
+      <SearchForm />
+      <SearchResults />
       <Modal />
     </>
   );
