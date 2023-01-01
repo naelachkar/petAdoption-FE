@@ -5,7 +5,7 @@ import { SearchContext } from "../Search/SearchContext";
 export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
-  const { getPetById, currentPet, setCurrentPet } = useContext(SearchContext);
+  const { getPetById, currentPet } = useContext(SearchContext);
 
   useEffect(() => {
     getPetById(currentId);
@@ -22,7 +22,7 @@ export default function Pet() {
       <ul>
         <li>Colour: {currentPet.color}</li>
         <li>Height: {currentPet.height}cm</li>
-        <li>Weight: {currentPet.weight}cm</li>
+        <li>Weight: {currentPet.weight}kg</li>
         <li>Hypoallergenic: {currentPet.hypoallergenic ? "Yes" : "No"}</li>
       </ul>
       {currentPet.bio ? <article className="bio">{currentPet.bio}</article> : null}

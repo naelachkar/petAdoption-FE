@@ -1,9 +1,12 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 export default function UserContextWrapper({ children }) {
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState();
@@ -23,20 +26,23 @@ export default function UserContextWrapper({ children }) {
     JSON.parse(localStorage.getItem("currentUser")) || null
   );
 
-  const loggingInLocal = async () => {
+  const login = async () => {
     try {
       const res = await axios.post("http://localhost:8080/login", {
         email,
         password,
       });
       setCurrentUser(email);
+      // TODO to be replaced by the token
       localStorage.setItem("currentUser", JSON.stringify(res.data.email));
       localStorage.setItem("firstName", JSON.stringify(res.data.firstName));
       localStorage.setItem("lastName", JSON.stringify(res.data.lastName));
       localStorage.setItem("phoneNumber", JSON.stringify(res.data.phoneNumber));
       localStorage.setItem("email", JSON.stringify(res.data.email));
+      navigate("/home");
     } catch (err) {
-      console.error(err);
+      alert(err.response.data);
+      // TODO Don't close the modal;
     }
   };
 
@@ -48,6 +54,18 @@ export default function UserContextWrapper({ children }) {
   useEffect(() => {
     setArePasswordsDifferent(false);
   }, [password, confirmPassword]);
+
+  const signUp = async () => {
+    const newUser = { firstName, lastName, email, phoneNumber, password };
+    try {
+      await axios.post("http://localhost:8080/signup", newUser);
+      alert("User created successfully");
+      //TODO go to log in modal
+    } catch (err) {
+      alert(err.response.data);
+      //TODO to be improved:
+    }
+  };
 
   return (
     <UserContext.Provider
@@ -66,9 +84,10 @@ export default function UserContextWrapper({ children }) {
         handleConfirmPasswordChange,
         arePasswordsDifferent,
         setArePasswordsDifferent,
-        loggingInLocal,
+        login,
         currentUser,
         loggingOutLocal,
+        signUp,
       }}>
       {children}
     </UserContext.Provider>

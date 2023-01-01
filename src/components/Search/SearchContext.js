@@ -30,7 +30,6 @@ export default function SearchContextWrapper({ children }) {
     }
   }
 
-
   useEffect(() => {
     getAllPets();
   }, []);

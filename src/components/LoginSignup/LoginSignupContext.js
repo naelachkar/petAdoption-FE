@@ -11,8 +11,9 @@ export default function LoginSignupContextWrapper({ children }) {
     password,
     confirmPassword,
     setArePasswordsDifferent,
-    loggingInLocal,
+    login,
     loggingOutLocal,
+    signUp,
   } = useContext(UserContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,9 +26,8 @@ export default function LoginSignupContextWrapper({ children }) {
 
   async function onLoginSubmit(e) {
     e.preventDefault();
-    await loggingInLocal();
+    await login();
     setIsModalOpen(false);
-    navigate("/home");
   }
 
   function onLogOutSubmit() {
@@ -35,14 +35,15 @@ export default function LoginSignupContextWrapper({ children }) {
     navigate("/");
   }
 
-  function onSignupSubmit(e) {
+  async function onSignupSubmit(e) {
     e.preventDefault();
     if (password !== confirmPassword) {
       setArePasswordsDifferent(true);
       return;
     }
     setArePasswordsDifferent(false);
-    alert("Submitted");
+    await signUp()
+    // open Log in modal
   }
 
   function handleToLogin() {
