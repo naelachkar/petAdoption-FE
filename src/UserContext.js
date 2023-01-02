@@ -23,7 +23,7 @@ export default function UserContextWrapper({ children }) {
   const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
 
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("currentUser")) || null
+    JSON.parse(localStorage.getItem("token")) || null
   );
 
   const login = async () => {
@@ -32,13 +32,8 @@ export default function UserContextWrapper({ children }) {
         email,
         password,
       });
-      setCurrentUser(email);
-      // TODO to be replaced by the token
-      localStorage.setItem("currentUser", JSON.stringify(res.data.email));
-      localStorage.setItem("firstName", JSON.stringify(res.data.firstName));
-      localStorage.setItem("lastName", JSON.stringify(res.data.lastName));
-      localStorage.setItem("phoneNumber", JSON.stringify(res.data.phoneNumber));
-      localStorage.setItem("email", JSON.stringify(res.data.email));
+      setCurrentUser(res.data.token);
+      localStorage.setItem("token", JSON.stringify(res.data.token))
       navigate("/home");
     } catch (err) {
       alert(err.response.data);
@@ -46,9 +41,9 @@ export default function UserContextWrapper({ children }) {
     }
   };
 
-  const loggingOutLocal = () => {
+  const logOut = () => {
     setCurrentUser(undefined);
-    localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
   };
 
   useEffect(() => {
@@ -86,7 +81,7 @@ export default function UserContextWrapper({ children }) {
         setArePasswordsDifferent,
         login,
         currentUser,
-        loggingOutLocal,
+        logOut,
         signUp,
       }}>
       {children}

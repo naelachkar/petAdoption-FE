@@ -12,7 +12,7 @@ export default function LoginSignupContextWrapper({ children }) {
     confirmPassword,
     setArePasswordsDifferent,
     login,
-    loggingOutLocal,
+    logOut,
     signUp,
   } = useContext(UserContext);
 
@@ -31,7 +31,7 @@ export default function LoginSignupContextWrapper({ children }) {
   }
 
   function onLogOutSubmit() {
-    loggingOutLocal();
+    logOut();
     navigate("/");
   }
 
