@@ -4,11 +4,11 @@ import { UserContext } from "../../UserContext";
 import { LoginSignupContext } from "../LoginSignup/LoginSignupContext";
 
 export default function NavBar() {
-  const { currentUser } = useContext(UserContext);
+  const { token } = useContext(UserContext);
   const { toggleModal, onLogOutSubmit } = useContext(LoginSignupContext);
   const navigate = useNavigate();
 
-  return currentUser ? (
+  return token ? (
     <nav>
       <button onClick={() => navigate("/search")}>Search</button>
       <button onClick={() => navigate("/home")}>Home</button>

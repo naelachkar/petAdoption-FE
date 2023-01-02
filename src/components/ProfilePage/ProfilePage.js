@@ -1,14 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../../UserContext";
-import SignupForm from "../LoginSignup/SignupForm";
 import NavBar from "../NavBar/NavBar";
 
 export default function ProfilePage() {
+  const { getCurrentUserInfo, currentUser } = useContext(UserContext);
+  const { firstName, lastName, phoneNumber, email } = currentUser;
 
-  const firstName = JSON.parse(localStorage.getItem("firstName"));
-  const lastName = JSON.parse(localStorage.getItem("lastName"));
-  const phoneNumber = JSON.parse(localStorage.getItem("phoneNumber"));
-  const email = JSON.parse(localStorage.getItem("email"));
+  useEffect(() => {
+    if (!currentUser) {
+      getCurrentUserInfo();
+    }
+  }, []);
+
+  if (!currentUser) return;
 
   return (
     <>

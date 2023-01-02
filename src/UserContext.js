@@ -22,9 +22,11 @@ export default function UserContextWrapper({ children }) {
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
 
-  const [currentUser, setCurrentUser] = useState(
+  const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("token")) || null
   );
+
+  const [currentUser, setCurrentUser] = useState("");
 
   const login = async () => {
     try {
@@ -32,8 +34,8 @@ export default function UserContextWrapper({ children }) {
         email,
         password,
       });
-      setCurrentUser(res.data.token);
-      localStorage.setItem("token", JSON.stringify(res.data.token))
+      setToken(res.data.token);
+      localStorage.setItem("token", JSON.stringify(res.data.token));
       navigate("/home");
     } catch (err) {
       alert(err.response.data);
@@ -42,7 +44,7 @@ export default function UserContextWrapper({ children }) {
   };
 
   const logout = () => {
-    setCurrentUser(undefined);
+    setToken(undefined);
     localStorage.removeItem("token");
   };
 
@@ -59,6 +61,17 @@ export default function UserContextWrapper({ children }) {
     } catch (err) {
       alert(err.response.data);
       //TODO to be improved:
+    }
+  };
+
+  const getCurrentUserInfo = async () => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
+    try {
+      const res = await axios.get(`http://localhost:8080/user/:id`, headersConfig);
+      setCurrentUser(res.data);
+    } catch (err) {
+      console.log(err.message)
     }
   };
 
@@ -80,9 +93,11 @@ export default function UserContextWrapper({ children }) {
         arePasswordsDifferent,
         setArePasswordsDifferent,
         login,
-        currentUser,
+        token,
         logout,
         signUp,
+        getCurrentUserInfo,
+        currentUser,
       }}>
       {children}
     </UserContext.Provider>
