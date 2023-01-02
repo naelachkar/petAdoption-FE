@@ -36,6 +36,7 @@ export default function UserContextWrapper({ children }) {
       });
       setToken(res.data.token);
       localStorage.setItem("token", JSON.stringify(res.data.token));
+      await getCurrentUserInfo();
       navigate("/home");
     } catch (err) {
       alert(err.response.data);
@@ -45,6 +46,7 @@ export default function UserContextWrapper({ children }) {
 
   const logout = () => {
     setToken(undefined);
+    setCurrentUser(undefined);
     localStorage.removeItem("token");
   };
 
@@ -68,10 +70,13 @@ export default function UserContextWrapper({ children }) {
     const token = JSON.parse(localStorage.getItem("token"));
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      const res = await axios.get(`http://localhost:8080/user/:id`, headersConfig);
+      const res = await axios.get(
+        `http://localhost:8080/user/:id`,
+        headersConfig
+      );
       setCurrentUser(res.data);
     } catch (err) {
-      console.log(err.message)
+      console.log(err.message);
     }
   };
 

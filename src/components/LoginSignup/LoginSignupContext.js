@@ -26,8 +26,10 @@ export default function LoginSignupContextWrapper({ children }) {
 
   async function onLoginSubmit(e) {
     e.preventDefault();
-    await login();
-    setIsModalOpen(false);
+    try {
+      await login();
+      setIsModalOpen(false);
+    } catch (err) {}
   }
 
   function onLogOutSubmit() {
@@ -42,8 +44,8 @@ export default function LoginSignupContextWrapper({ children }) {
       return;
     }
     setArePasswordsDifferent(false);
-    await signUp()
-    // open Log in modal
+    await signUp();
+    setLoginOrSignup("Log in")
   }
 
   function handleToLogin() {

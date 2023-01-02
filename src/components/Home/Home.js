@@ -4,7 +4,6 @@ import NavBar from "../NavBar/NavBar";
 
 export default function Home() {
   const { getCurrentUserInfo, currentUser } = useContext(UserContext);
-  const { firstName, lastName } = currentUser;
 
   useEffect(() => {
     if (!currentUser) {
@@ -12,15 +11,13 @@ export default function Home() {
     }
   }, []);
 
-  if (!currentUser) return;
-
-  return (
+  return currentUser ? (
     <>
       <NavBar />
       <h1>
-        Hello {firstName ? `${firstName}` : null}{" "}
-        {lastName ? `${lastName}` : null}{" "}
+        Hello {currentUser.firstName ? `${currentUser.firstName}` : null}{" "}
+        {currentUser.lastName ? `${currentUser.lastName}` : null}{" "}
       </h1>
     </>
-  );
+  ) : null;
 }
