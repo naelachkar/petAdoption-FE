@@ -16,11 +16,11 @@ export default function Home() {
 
   return (
     <>
+      <NavBar />
       <h1>
         Hello {firstName ? `${firstName}` : null}{" "}
         {lastName ? `${lastName}` : null}{" "}
       </h1>
-      <NavBar />
     </>
   );
 }

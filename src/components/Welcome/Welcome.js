@@ -1,12 +1,14 @@
-import LoginSignup from "../LoginSignup/LoginSignup";
+import Modal from "../LoginSignup/Modal";
+import NavBar from "../NavBar/NavBar";
 import "./Welcome.css";
 
-export default function Home() {
+export default function Welcome() {
   return (
-    <div className="welcome">
+    <>
+      <NavBar />
       <h1>Pet Adoption Agency</h1>
-      <LoginSignup />
+      <Modal />
       <article>This is the website of a pet adoption agency.</article>
-    </div>
+    </>
   );
 }

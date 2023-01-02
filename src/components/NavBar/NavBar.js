@@ -10,8 +10,8 @@ export default function NavBar() {
 
   return token ? (
     <nav>
-      <button onClick={() => navigate("/search")}>Search</button>
       <button onClick={() => navigate("/home")}>Home</button>
+      <button onClick={() => navigate("/search")}>Search</button>
       <button>My Pets</button>
       <button onClick={() => navigate("/profilePage")}>
         Profile Page
@@ -20,6 +20,7 @@ export default function NavBar() {
     </nav>
   ) : (
     <nav>
+      <button onClick={() => navigate("/")}>Welcome</button>
       <button onClick={() => navigate("/search")}>Search</button>
       <button id="Log in" onClick={toggleModal}>
         Log in

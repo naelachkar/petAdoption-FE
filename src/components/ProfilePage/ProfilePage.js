@@ -16,8 +16,8 @@ export default function ProfilePage() {
 
   return (
     <>
-      <h1>Profile Settings</h1>
       <NavBar />
+      <h1>Profile Settings</h1>
       <form onSubmit={null}>
         <label htmlFor="firstName">First name</label>
         <input
