@@ -41,7 +41,7 @@ export default function UserContextWrapper({ children }) {
     }
   };
 
-  const logOut = () => {
+  const logout = () => {
     setCurrentUser(undefined);
     localStorage.removeItem("token");
   };
@@ -81,7 +81,7 @@ export default function UserContextWrapper({ children }) {
         setArePasswordsDifferent,
         login,
         currentUser,
-        logOut,
+        logout,
         signUp,
       }}>
       {children}
