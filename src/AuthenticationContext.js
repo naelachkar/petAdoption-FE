@@ -2,9 +2,9 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const UserContext = createContext();
+export const AuthenticationContext = createContext();
 
-export default function UserContextWrapper({ children }) {
+export default function AuthenticationContextWrapper({ children }) {
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
@@ -81,7 +81,7 @@ export default function UserContextWrapper({ children }) {
   };
 
   return (
-    <UserContext.Provider
+    <AuthenticationContext.Provider
       value={{
         firstName,
         handleFirstNameChange,
@@ -105,6 +105,6 @@ export default function UserContextWrapper({ children }) {
         currentUser,
       }}>
       {children}
-    </UserContext.Provider>
+    </AuthenticationContext.Provider>
   );
 }

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../UserContext";
+import { AuthenticationContext } from "../../AuthenticationContext";
 
 export const LoginSignupContext = createContext();
 
@@ -14,7 +14,7 @@ export default function LoginSignupContextWrapper({ children }) {
     login,
     logout,
     signup,
-  } = useContext(UserContext);
+  } = useContext(AuthenticationContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginOrSignup, setLoginOrSignup] = useState("");

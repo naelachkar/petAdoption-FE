@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../../UserContext";
+import { AuthenticationContext } from "../../AuthenticationContext";
 import { LoginSignupContext } from "./LoginSignupContext";
 
 export default function SignupForm() {
@@ -18,7 +18,7 @@ export default function SignupForm() {
     confirmPassword,
     handleConfirmPasswordChange,
     arePasswordsDifferent,
-  } = useContext(UserContext);
+  } = useContext(AuthenticationContext);
 
   return (
     <>

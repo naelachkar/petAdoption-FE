@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { UserContext } from "../../UserContext";
+import { AuthenticationContext } from "../../AuthenticationContext";
 import { LoginSignupContext } from "./LoginSignupContext";
 
 export default function LoginForm() {
   const { onLoginSubmit, handleToSignup } = useContext(LoginSignupContext);
   const { email, handleEmailChange, password, handlePasswordChange } =
-    useContext(UserContext);
+    useContext(AuthenticationContext);
 
   return (
     <>

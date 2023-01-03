@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../UserContext";
+import { AuthenticationContext } from "../../AuthenticationContext";
 import { LoginSignupContext } from "../LoginSignup/LoginSignupContext";
 import "./NavBar.css";
 
 export default function NavBar() {
-  const { token, currentUser } = useContext(UserContext);
+  const { token, currentUser } = useContext(AuthenticationContext);
   const { toggleModal, onLogOutSubmit } = useContext(LoginSignupContext);
   const navigate = useNavigate();
 

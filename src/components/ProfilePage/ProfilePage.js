@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import { UserContext } from "../../UserContext";
+import { AuthenticationContext } from "../../AuthenticationContext";
 import NavBar from "../NavBar/NavBar";
 
 export default function ProfilePage() {
-  const { getCurrentUserInfo, currentUser } = useContext(UserContext);
+  const { getCurrentUserInfo, currentUser } = useContext(AuthenticationContext);
   const { firstName, lastName, phoneNumber, email } = currentUser;
 
   useEffect(() => {
