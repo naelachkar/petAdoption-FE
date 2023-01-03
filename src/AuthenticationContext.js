@@ -8,13 +8,24 @@ export default function AuthenticationContextWrapper({ children }) {
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [arePasswordsDifferent, setArePasswordsDifferent] = useState(false);
+  const handleFirstNameChange = (e) => setFirstName(e.target.value);
 
+  const [lastName, setLastName] = useState("");
+  const handleLastNameChange = (e) => setLastName(e.target.value);
+
+  const [phoneNumber, setPhoneNumber] = useState();
+  const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
+
+  const [email, setEmail] = useState("");
+  const handleEmailChange = (e) => setEmail(e.target.value);
+
+  const [password, setPassword] = useState("");
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+
+  const [arePasswordsDifferent, setArePasswordsDifferent] = useState(false);
   useEffect(() => {
     setArePasswordsDifferent(false);
   }, [password, confirmPassword]);
@@ -27,25 +38,16 @@ export default function AuthenticationContextWrapper({ children }) {
     setLoginOrSignup(e.target.id);
   }
 
-  const handleFirstNameChange = (e) => setFirstName(e.target.value);
-  const handleLastNameChange = (e) => setLastName(e.target.value);
-  const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
-
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("token")) || null
   );
-
   const [currentUser, setCurrentUser] = useState("");
 
   // Functions
-  async function signUp(e) {
+  async function signup(e) {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setArePasswordsDifferent(true);
-      return;
+      return setArePasswordsDifferent(true);
     }
     setArePasswordsDifferent(false);
     const newUser = { firstName, lastName, email, phoneNumber, password };
@@ -73,7 +75,6 @@ export default function AuthenticationContextWrapper({ children }) {
       navigate("/home");
     } catch (err) {
       alert(err.response.data);
-      // TODO Don't close the modal;
     }
   }
 
@@ -115,16 +116,16 @@ export default function AuthenticationContextWrapper({ children }) {
         handleConfirmPasswordChange,
         arePasswordsDifferent,
         setArePasswordsDifferent,
-        login,
-        token,
-        logout,
-        signUp,
-        getCurrentUserInfo,
-        currentUser,
         isModalOpen,
         toggleModal,
         setLoginOrSignup,
         loginOrSignup,
+        signup,
+        login,
+        token,
+        logout,
+        getCurrentUserInfo,
+        currentUser,
       }}>
       {children}
     </AuthenticationContext.Provider>

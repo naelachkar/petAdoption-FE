@@ -5,7 +5,7 @@ import Home from "./components/Home/Home";
 import Search from "./components/Search/Search";
 import AuthenticationContextWrapper from "./AuthenticationContext";
 import ProtectedRoute from "./components/Utilities/ProtectedRoute";
-import ProfilePage from "./components/ProfilePage/ProfilePage";
+import ProfilePage from "./components/User/ProfileSettings";
 import Pet from "./components/Pet/Pet";
 import SearchContextWrapper from "./components/Search/SearchContext";
 

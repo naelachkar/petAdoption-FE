@@ -16,7 +16,7 @@ export default function SignupForm() {
     confirmPassword,
     handleConfirmPasswordChange,
     arePasswordsDifferent,
-    signUp,
+    signup,
     setLoginOrSignup,
   } = useContext(AuthenticationContext);
 
@@ -32,7 +32,7 @@ export default function SignupForm() {
           Log in here
         </a>
       </span>
-      <form onSubmit={signUp}>
+      <form onSubmit={signup}>
         <label htmlFor="firstName">First name</label>
         <input
           type="name"
