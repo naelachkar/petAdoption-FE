@@ -4,7 +4,7 @@ import Welcome from "./components/Welcome/Welcome";
 import Home from "./components/Home/Home";
 import Search from "./components/Search/Search";
 import AuthenticationContextWrapper from "./AuthenticationContext";
-import ProtectedRoute from "./components/Utilities/ProtectedRoute";
+import PrivateRoute from "./components/Utilities/PrivateRoute";
 import ProfilePage from "./components/User/ProfileSettings";
 import Pet from "./components/Pet/Pet";
 import SearchContextWrapper from "./components/Search/SearchContext";
@@ -22,17 +22,17 @@ export default function App() {
             <Route
               path="/home"
               element={
-                <ProtectedRoute>
+                <PrivateRoute>
                   <Home />
-                </ProtectedRoute>
+                </PrivateRoute>
               }
             />
             <Route
               path="/profilePage"
               element={
-                <ProtectedRoute>
+                <PrivateRoute>
                   <ProfilePage />
-                </ProtectedRoute>
+                </PrivateRoute>
               }
             />
             <Route path="/admin" element={<Admin />} />
