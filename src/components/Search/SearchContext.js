@@ -30,6 +30,7 @@ export default function SearchContextWrapper({ children }) {
     }
   }
 
+  //! On first render, doesn't show first search - temporary hack:
   useEffect(() => {
     getAllPets();
   }, []);

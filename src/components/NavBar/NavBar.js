@@ -5,7 +5,7 @@ import { LoginSignupContext } from "../LoginSignup/LoginSignupContext";
 import "./NavBar.css";
 
 export default function NavBar() {
-  const { token } = useContext(UserContext);
+  const { token, currentUser } = useContext(UserContext);
   const { toggleModal, onLogOutSubmit } = useContext(LoginSignupContext);
   const navigate = useNavigate();
 
@@ -16,6 +16,7 @@ export default function NavBar() {
         <button onClick={() => navigate("/search")}>Search</button>
         <button>My Pets</button>
         <button onClick={() => navigate("/profilePage")}>Profile Page</button>
+        {currentUser?.admin === true ? <button onClick={() => navigate("/admin")}>Admin Page</button>: null}
         <button onClick={onLogOutSubmit}>Log out</button>
       </nav>
     </div>

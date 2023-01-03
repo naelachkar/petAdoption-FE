@@ -13,7 +13,7 @@ export default function LoginSignupContextWrapper({ children }) {
     setArePasswordsDifferent,
     login,
     logout,
-    signUp,
+    signup,
   } = useContext(UserContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function LoginSignupContextWrapper({ children }) {
       return;
     }
     setArePasswordsDifferent(false);
-    await signUp();
+    await signup();
     setLoginOrSignup("Log in")
   }
 
