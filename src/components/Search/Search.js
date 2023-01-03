@@ -6,6 +6,8 @@ import SearchForm from "./SearchForm/SearchForm";
 import SearchResults from "./SearchResults";
 
 export default function Search() {
+  document.title = "Search";
+  
   return (
     <>
       <NavBar />

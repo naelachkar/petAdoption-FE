@@ -5,11 +5,12 @@ import Home from "./components/Home/Home";
 import Search from "./components/Search/Search";
 import AuthenticationContextWrapper from "./AuthenticationContext";
 import PrivateRoute from "./components/Utilities/PrivateRoute";
-import ProfilePage from "./components/User/ProfileSettings";
+import ProfileSettings from "./components/User/ProfileSettings";
 import Pet from "./components/Pet/Pet";
 import SearchContextWrapper from "./components/Search/SearchContext";
-import Admin from "./components/User/Admin";
+import AdminPage from "./components/User/AdminPage";
 import AdminRoute from "./components/Utilities/AdminRoute";
+import MyPets from "./components/User/MyPets";
 
 export default function App() {
   return (
@@ -29,10 +30,18 @@ export default function App() {
               }
             />
             <Route
+              path="/myPets"
+              element={
+                <PrivateRoute>
+                  <MyPets />
+                </PrivateRoute>
+              }
+            />
+            <Route
               path="/profilePage"
               element={
                 <PrivateRoute>
-                  <ProfilePage />
+                  <ProfileSettings />
                 </PrivateRoute>
               }
             />
@@ -40,7 +49,7 @@ export default function App() {
               path="/admin"
               element={
                 <AdminRoute>
-                  <Admin />
+                  <AdminPage />
                 </AdminRoute>
               }
             />

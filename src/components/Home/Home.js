@@ -3,6 +3,8 @@ import { AuthenticationContext } from "../../AuthenticationContext";
 import NavBar from "../NavBar/NavBar";
 
 export default function Home() {
+  document.title = "Home";
+
   const { getCurrentUserInfo, currentUser } = useContext(AuthenticationContext);
 
   useEffect(() => {

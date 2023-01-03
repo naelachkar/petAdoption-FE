@@ -2,7 +2,9 @@ import { useContext, useEffect } from "react";
 import { AuthenticationContext } from "../../AuthenticationContext";
 import NavBar from "../NavBar/NavBar";
 
-export default function ProfilePage() {
+export default function ProfileSettings() {
+  document.title = "Profile Settings";
+
   const { getCurrentUserInfo, currentUser } = useContext(AuthenticationContext);
   const { firstName, lastName, phoneNumber, email } = currentUser;
 

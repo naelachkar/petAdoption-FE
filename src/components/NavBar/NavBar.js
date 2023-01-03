@@ -15,7 +15,7 @@ export default function NavBar() {
       <nav>
         <button onClick={() => navigate("/home")}>Home</button>
         <button onClick={() => navigate("/search")}>Search</button>
-        <button>My Pets</button>
+        <button onClick={() => navigate("/myPets")}>My Pets</button>
         <button onClick={() => navigate("/profilePage")}>Profile Settings</button>
         {currentUser?.admin === true ? (
           <button onClick={() => navigate("/admin")}>Admin Page</button>

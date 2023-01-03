@@ -3,6 +3,8 @@ import NavBar from "../NavBar/NavBar";
 import "./Welcome.css";
 
 export default function Welcome() {
+  document.title = "Pet Adoption";
+
   return (
     <>
       <NavBar />
