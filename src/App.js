@@ -8,9 +8,11 @@ import PrivateRoute from "./components/Utilities/PrivateRoute";
 import ProfileSettings from "./components/User/ProfileSettings";
 import Pet from "./components/Pet/Pet";
 import SearchContextWrapper from "./components/Search/SearchContext";
-import AdminPage from "./components/User/AdminPage";
+import AdminPage from "./components/Admin/AdminPage";
 import AdminRoute from "./components/Utilities/AdminRoute";
 import MyPets from "./components/User/MyPets";
+import AdminContextWrapper from "./components/Admin/AdminContext";
+import UserInfo from "./components/Admin/UserInfo";
 
 export default function App() {
   return (
@@ -49,7 +51,19 @@ export default function App() {
               path="/admin"
               element={
                 <AdminRoute>
-                  <AdminPage />
+                  <AdminContextWrapper>
+                    <AdminPage />
+                  </AdminContextWrapper>
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/userInfo"
+              element={
+                <AdminRoute>
+                  <AdminContextWrapper>
+                    <UserInfo />
+                  </AdminContextWrapper>
                 </AdminRoute>
               }
             />

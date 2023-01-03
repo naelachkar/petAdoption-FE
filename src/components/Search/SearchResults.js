@@ -8,7 +8,7 @@ export default function SearchResults() {
 
   return searchedPets.length !== 0 ? (
     <div className="petList">
-      {searchedPets.map(({ type, name, breed, _id }, index) => {
+      {searchedPets.map(({ type, name, breed, _id }) => {
         return (
           <div key={_id} className="petCard" onClick={() => navigate(`/pet?id=${_id}`)}>
             <span>{type}</span>
