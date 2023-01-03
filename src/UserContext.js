@@ -30,7 +30,7 @@ export default function UserContextWrapper({ children }) {
 
   const login = async () => {
     try {
-      const res = await axios.post("http://localhost:8080/login", {
+      const res = await axios.post(`${process.env.REACT_APP_URL}/login`, {
         email,
         password,
       });
@@ -57,7 +57,7 @@ export default function UserContextWrapper({ children }) {
   const signUp = async () => {
     const newUser = { firstName, lastName, email, phoneNumber, password };
     try {
-      await axios.post("http://localhost:8080/signup", newUser);
+      await axios.post(`${process.env.REACT_APP_URL}/signup`, newUser);
       alert("User created successfully");
       //TODO go to log in modal
     } catch (err) {
@@ -71,7 +71,7 @@ export default function UserContextWrapper({ children }) {
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
     try {
       const res = await axios.get(
-        `http://localhost:8080/user/:id`,
+        `${process.env.REACT_APP_URL}/user/:id`,
         headersConfig
       );
       setCurrentUser(res.data);

@@ -14,7 +14,7 @@ export default function SearchContextWrapper({ children }) {
 
   async function getAllPets() {
     try {
-      const allPets = await axios.get("http://localhost:8080/pets");
+      const allPets = await axios.get(`${process.env.REACT_APP_URL}/pets`);
       setPetList(allPets.data);
     } catch (err) {
       console.error(err);
@@ -23,7 +23,7 @@ export default function SearchContextWrapper({ children }) {
 
   async function getPetById(id) {
     try {
-      const petById = await axios.get(`http://localhost:8080/pets/:${id}`);
+      const petById = await axios.get(`${process.env.REACT_APP_URL}/pets/:${id}`);
       setCurrentPet(petById.data);
     } catch (err) {
       console.log(err);
