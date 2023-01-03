@@ -9,6 +9,7 @@ import ProfilePage from "./components/User/ProfileSettings";
 import Pet from "./components/Pet/Pet";
 import SearchContextWrapper from "./components/Search/SearchContext";
 import Admin from "./components/User/Admin";
+import AdminRoute from "./components/Utilities/AdminRoute";
 
 export default function App() {
   return (
@@ -35,7 +36,14 @@ export default function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/admin" element={<Admin />} />
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <Admin />
+                </AdminRoute>
+              }
+            />
           </Routes>
         </SearchContextWrapper>
       </AuthenticationContextWrapper>
