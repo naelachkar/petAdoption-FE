@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/Utilities/ProtectedRoute";
 import ProfilePage from "./components/User/ProfileSettings";
 import Pet from "./components/Pet/Pet";
 import SearchContextWrapper from "./components/Search/SearchContext";
+import Admin from "./components/User/Admin";
 
 export default function App() {
   return (
@@ -16,6 +17,8 @@ export default function App() {
         <SearchContextWrapper>
           <Routes>
             <Route path="/" element={<Welcome />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/pet" element={<Pet />} />
             <Route
               path="/home"
               element={
@@ -32,8 +35,7 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/search" element={<Search />} />
-            <Route path="/pet" element={<Pet />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </SearchContextWrapper>
       </AuthenticationContextWrapper>
