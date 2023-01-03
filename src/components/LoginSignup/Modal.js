@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import LoginForm from "./LoginForm";
-import { LoginSignupContext } from "./LoginSignupContext";
 import SignupForm from "./SignupForm";
 import "./LoginSignup.css";
+import { AuthenticationContext } from "../../AuthenticationContext";
 
 export default function Modal() {
-  const { isModalOpen, toggleModal, loginOrSignup } =
-    useContext(LoginSignupContext);
+  const { isModalOpen, toggleModal, loginOrSignup } = useContext(
+    AuthenticationContext
+  );
 
   return (
     <>

@@ -1,19 +1,29 @@
 import { useContext } from "react";
 import { AuthenticationContext } from "../../AuthenticationContext";
-import { LoginSignupContext } from "./LoginSignupContext";
 
 export default function LoginForm() {
-  const { onLoginSubmit, handleToSignup } = useContext(LoginSignupContext);
-  const { email, handleEmailChange, password, handlePasswordChange } =
-    useContext(AuthenticationContext);
+  const {
+    email,
+    handleEmailChange,
+    password,
+    handlePasswordChange,
+    login,
+    setLoginOrSignup,
+  } = useContext(AuthenticationContext);
 
   return (
     <>
       <h2>Good to see you again</h2>
       <span>
-        Don't have an account? <a onClick={handleToSignup}>Sign up here</a>
+        Don't have an account?{" "}
+        <a
+          onClick={() => {
+            setLoginOrSignup("Sign up");
+          }}>
+          Sign up here
+        </a>
       </span>
-      <form onSubmit={onLoginSubmit}>
+      <form onSubmit={login}>
         <label htmlFor="email">Email</label>
         <input
           type="email"

@@ -1,9 +1,7 @@
 import { useContext } from "react";
 import { AuthenticationContext } from "../../AuthenticationContext";
-import { LoginSignupContext } from "./LoginSignupContext";
 
 export default function SignupForm() {
-  const { onSignupSubmit, handleToLogin } = useContext(LoginSignupContext);
   const {
     firstName,
     handleFirstNameChange,
@@ -18,15 +16,23 @@ export default function SignupForm() {
     confirmPassword,
     handleConfirmPasswordChange,
     arePasswordsDifferent,
+    signUp,
+    setLoginOrSignup,
   } = useContext(AuthenticationContext);
 
   return (
     <>
       <h2>Create an account</h2>
       <span>
-        Already have one? <a onClick={handleToLogin}>Log in here</a>
+        Already have one?{" "}
+        <a
+          onClick={() => {
+            setLoginOrSignup("Log in");
+          }}>
+          Log in here
+        </a>
       </span>
-      <form onSubmit={onSignupSubmit}>
+      <form onSubmit={signUp}>
         <label htmlFor="firstName">First name</label>
         <input
           type="name"
