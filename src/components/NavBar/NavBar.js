@@ -4,7 +4,7 @@ import { AuthenticationContext } from "../../AuthenticationContext";
 import "./NavBar.css";
 
 export default function NavBar() {
-  const { token, currentUser, logout, toggleModal } = useContext(
+  const { token, logout, toggleModal } = useContext(
     AuthenticationContext
   );
 
@@ -17,7 +17,7 @@ export default function NavBar() {
         <button onClick={() => navigate("/search")}>Search</button>
         <button onClick={() => navigate("/myPets")}>My Pets</button>
         <button onClick={() => navigate("/profilePage")}>Profile Settings</button>
-        {currentUser?.admin === true ? (
+        {localStorage.getItem("admin") === "true" ? (
           <button onClick={() => navigate("/admin")}>Admin Page</button>
         ) : null}
         <button onClick={logout}>Log out</button>

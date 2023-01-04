@@ -82,6 +82,7 @@ export default function AuthenticationContextWrapper({ children }) {
     setToken(undefined);
     setCurrentUser(undefined);
     localStorage.removeItem("token");
+    localStorage.removeItem("admin")
     navigate("/");
   }
 
@@ -94,6 +95,7 @@ export default function AuthenticationContextWrapper({ children }) {
         headersConfig
       );
       setCurrentUser(res.data);
+      localStorage.setItem("admin", res.data.admin)
     } catch (err) {
       console.log(err.message);
     }
