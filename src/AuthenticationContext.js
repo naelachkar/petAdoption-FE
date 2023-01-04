@@ -13,7 +13,7 @@ export default function AuthenticationContextWrapper({ children }) {
   const [lastName, setLastName] = useState("");
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
-  const [phoneNumber, setPhoneNumber] = useState();
+  const [phoneNumber, setPhoneNumber] = useState("");
   const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
 
   const [email, setEmail] = useState("");
@@ -30,6 +30,9 @@ export default function AuthenticationContextWrapper({ children }) {
     setArePasswordsDifferent(false);
   }, [password, confirmPassword]);
 
+  const [bio, setBio] = useState("");
+  const handleBioChange = (e) => setBio(e.target.value);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginOrSignup, setLoginOrSignup] = useState("");
 
@@ -44,12 +47,16 @@ export default function AuthenticationContextWrapper({ children }) {
   const [currentUser, setCurrentUser] = useState("");
 
   // Functions
-  async function signup(e) {
-    e.preventDefault();
+  function checkPasswords() {
     if (password !== confirmPassword) {
       return setArePasswordsDifferent(true);
     }
     setArePasswordsDifferent(false);
+  }
+
+  async function signup(e) {
+    e.preventDefault();
+    checkPasswords();
     const newUser = { firstName, lastName, email, phoneNumber, password };
     try {
       await axios.post(`${process.env.REACT_APP_URL}/signup`, newUser);
@@ -71,6 +78,8 @@ export default function AuthenticationContextWrapper({ children }) {
       setToken(res.data.token);
       localStorage.setItem("token", JSON.stringify(res.data.token));
       await getCurrentUserInfo();
+      setPassword("");
+      setEmail("");
       setIsModalOpen(false);
       navigate("/home");
     } catch (err) {
@@ -82,7 +91,7 @@ export default function AuthenticationContextWrapper({ children }) {
     setToken(undefined);
     setCurrentUser(undefined);
     localStorage.removeItem("token");
-    localStorage.removeItem("admin")
+    localStorage.removeItem("admin");
     navigate("/");
   }
 
@@ -95,11 +104,42 @@ export default function AuthenticationContextWrapper({ children }) {
         headersConfig
       );
       setCurrentUser(res.data);
-      localStorage.setItem("admin", res.data.admin)
+      localStorage.setItem("admin", res.data.admin);
     } catch (err) {
       console.log(err.message);
     }
   };
+
+  async function updateUserInfo(e) {
+    e.preventDefault();
+    checkPasswords();
+    const token = JSON.parse(localStorage.getItem("token"));
+    const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
+    const updatedInfo = {
+      firstName,
+      lastName,
+      phoneNumber,
+      email,
+      bio,
+      password,
+    };
+    for (const key in updatedInfo) {
+      if (updatedInfo[key] === "" || updatedInfo[key] === currentUser[key]) {
+        delete updatedInfo[key];
+      }
+    }
+    try {
+      const res = await axios.put(
+        `${process.env.REACT_APP_URL}/user/:id`,
+        updatedInfo,
+        headersConfig
+      );
+      setCurrentUser(res.data);
+      navigate("/home");
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <AuthenticationContext.Provider
@@ -116,6 +156,8 @@ export default function AuthenticationContextWrapper({ children }) {
         handlePasswordChange,
         confirmPassword,
         handleConfirmPasswordChange,
+        bio,
+        handleBioChange,
         arePasswordsDifferent,
         setArePasswordsDifferent,
         isModalOpen,
@@ -128,6 +170,7 @@ export default function AuthenticationContextWrapper({ children }) {
         logout,
         getCurrentUserInfo,
         currentUser,
+        updateUserInfo,
       }}>
       {children}
     </AuthenticationContext.Provider>
