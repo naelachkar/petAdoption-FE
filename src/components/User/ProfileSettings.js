@@ -8,25 +8,19 @@ export default function ProfileSettings() {
   const {
     getCurrentUserInfo,
     currentUser,
-    firstName,
     handleFirstNameChange,
-    lastName,
     handleLastNameChange,
-    phoneNumber,
     handlePhoneNumberChange,
-    email,
     handleEmailChange,
     handlePasswordChange,
     handleConfirmPasswordChange,
-    bio,
     handleBioChange,
     updateUserInfo,
+    arePasswordsDifferent,
   } = useContext(AuthenticationContext);
 
   useEffect(() => {
-    if (!currentUser) {
-      getCurrentUserInfo();
-    }
+    getCurrentUserInfo();
   }, []);
 
   if (!currentUser) return;
@@ -89,7 +83,7 @@ export default function ProfileSettings() {
         />
         <div
           className="alert"
-          style={{ visibility: null ? "visible" : "hidden" }}>
+          style={{ visibility: arePasswordsDifferent ? "visible" : "hidden" }}>
           Passwords don't match
         </div>
         <button type="submit">Update my information</button>

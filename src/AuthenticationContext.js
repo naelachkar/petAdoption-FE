@@ -7,22 +7,22 @@ export const AuthenticationContext = createContext();
 export default function AuthenticationContextWrapper({ children }) {
   const navigate = useNavigate();
 
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState();
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
 
-  const [lastName, setLastName] = useState("");
+  const [lastName, setLastName] = useState();
   const handleLastNameChange = (e) => setLastName(e.target.value);
 
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState();
   const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState();
   const handleEmailChange = (e) => setEmail(e.target.value);
 
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState();
   const handlePasswordChange = (e) => setPassword(e.target.value);
 
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState();
   const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
 
   const [arePasswordsDifferent, setArePasswordsDifferent] = useState(false);
@@ -30,7 +30,15 @@ export default function AuthenticationContextWrapper({ children }) {
     setArePasswordsDifferent(false);
   }, [password, confirmPassword]);
 
-  const [bio, setBio] = useState("");
+  function resetInputs() {
+    setFirstName();
+    setLastName();
+    setEmail();
+    setPassword();
+    setConfirmPassword();
+  }
+
+  const [bio, setBio] = useState();
   const handleBioChange = (e) => setBio(e.target.value);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,6 +47,7 @@ export default function AuthenticationContextWrapper({ children }) {
   function toggleModal(e) {
     setIsModalOpen(!isModalOpen);
     setLoginOrSignup(e.target.id);
+    resetInputs();
   }
 
   const [token, setToken] = useState(
@@ -47,24 +56,27 @@ export default function AuthenticationContextWrapper({ children }) {
   const [currentUser, setCurrentUser] = useState("");
 
   // Functions
-  function checkPasswords() {
-    if (password !== confirmPassword) {
-      return setArePasswordsDifferent(true);
-    }
-    setArePasswordsDifferent(false);
-  }
 
   async function signup(e) {
     e.preventDefault();
-    checkPasswords();
-    const newUser = { firstName, lastName, email, phoneNumber, password };
+    const newUser = {
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      password,
+      confirmPassword,
+    };
     try {
       await axios.post(`${process.env.REACT_APP_URL}/signup`, newUser);
       alert("User created successfully");
       setLoginOrSignup("Log in");
     } catch (err) {
-      alert(err.response.data);
-      //TODO to be improved:
+      if (err.response.data.ok === false) {
+        setArePasswordsDifferent(true);
+      } else {
+        alert(err.response.data);
+      }
     }
   }
 
@@ -81,6 +93,7 @@ export default function AuthenticationContextWrapper({ children }) {
       setPassword("");
       setEmail("");
       setIsModalOpen(false);
+      resetInputs();
       navigate("/home");
     } catch (err) {
       alert(err.response.data);
@@ -92,6 +105,7 @@ export default function AuthenticationContextWrapper({ children }) {
     setCurrentUser(undefined);
     localStorage.removeItem("token");
     localStorage.removeItem("admin");
+    resetInputs();
     navigate("/");
   }
 
@@ -112,7 +126,6 @@ export default function AuthenticationContextWrapper({ children }) {
 
   async function updateUserInfo(e) {
     e.preventDefault();
-    checkPasswords();
     const token = JSON.parse(localStorage.getItem("token"));
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
     const updatedInfo = {
@@ -122,9 +135,10 @@ export default function AuthenticationContextWrapper({ children }) {
       email,
       bio,
       password,
+      confirmPassword,
     };
     for (const key in updatedInfo) {
-      if (updatedInfo[key] === "" || updatedInfo[key] === currentUser[key]) {
+      if (updatedInfo[key] === undefined || updatedInfo[key] === currentUser[key]) {
         delete updatedInfo[key];
       }
     }
@@ -137,7 +151,11 @@ export default function AuthenticationContextWrapper({ children }) {
       setCurrentUser(res.data);
       navigate("/home");
     } catch (err) {
-      console.log(err);
+      if (err.response.data.ok === false) {
+        setArePasswordsDifferent(true);
+      } else {
+        alert(err.response.data.error);
+      }
     }
   }
 
