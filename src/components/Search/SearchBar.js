@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { SearchContext } from "./SearchContext";
 
 export default function SearchBar() {
-  const { setAdvancedSearch } = useContext(SearchContext);
+  const { toggleSearchType } = useContext(SearchContext);
 
   return (
     <div className="search-bar">
-      <button onClick={() => setAdvancedSearch(false)}>Simple search</button>
-      <button onClick={() => setAdvancedSearch(true)}>Advanced search</button>
+      <button onClick={toggleSearchType}>Simple search</button>
+      <button onClick={toggleSearchType}>Advanced search</button>
     </div>
   );
 }

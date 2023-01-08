@@ -6,6 +6,8 @@ export default function SearchResults() {
   const navigate = useNavigate();
   const { searchedPets } = useContext(SearchContext);
 
+  if (!searchedPets) return;
+
   return searchedPets.length !== 0 ? (
     <div className="petList">
       {searchedPets.map(({ type, name, breed, _id }) => {

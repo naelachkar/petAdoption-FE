@@ -7,15 +7,29 @@ export default function SearchContextWrapper({ children }) {
   const [advancedSearch, setAdvancedSearch] = useState(
     JSON.parse(localStorage.getItem("search")) || false
   );
-  const [inputs, setInputs] = useState({});
-  const [petList, setPetList] = useState([]);
+  const [inputs, setInputs] = useState({type: "", adoptionStatus: ""});
   const [searchedPets, setSearchPets] = useState([]);
-  const [currentPet, setCurrentPet] = useState()
+  const [currentPet, setCurrentPet] = useState();
 
-  async function getAllPets() {
+  async function searchPets(e) {
+    if (e) {
+      e.preventDefault();
+    }
+    for (const input in inputs) {
+      if (inputs[input] === "" || inputs[input] === undefined) {
+        delete inputs[input];
+      }
+    }
+    if (inputs.name) {
+      inputs.name = { $regex: `${inputs.name}`, $options: "i" };
+    }
     try {
-      const allPets = await axios.get(`${process.env.REACT_APP_URL}/pets`);
-      setPetList(allPets.data);
+      const retrievedPets = await axios.get(
+        `${process.env.REACT_APP_URL}/pets`,
+        { params: { query: inputs } }
+      );
+      console.log(retrievedPets);
+      setSearchPets(retrievedPets.data);
     } catch (err) {
       console.error(err);
     }
@@ -23,7 +37,9 @@ export default function SearchContextWrapper({ children }) {
 
   async function getPetById(id) {
     try {
-      const petById = await axios.get(`${process.env.REACT_APP_URL}/pets/:${id}`);
+      const petById = await axios.get(
+        `${process.env.REACT_APP_URL}/pets/:${id}`
+      );
       setCurrentPet(petById.data);
     } catch (err) {
       console.log(err);
@@ -32,32 +48,17 @@ export default function SearchContextWrapper({ children }) {
 
   //! On first render, doesn't show first search - temporary hack:
   useEffect(() => {
-    getAllPets();
+    searchPets();
   }, []);
 
   function toggleSearchType() {
+    console.log("toggle")
     setAdvancedSearch(!advancedSearch);
-    setInputs({});
+    setInputs();
   }
 
   function handleChange(e) {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
-  }
-
-  async function handleSearch(e) {
-    e.preventDefault();
-    await getAllPets();
-    const filtered = petList.filter((pet) => {
-      for (const searchParam in inputs) {
-        const petParam = pet[searchParam].toString().toLowerCase();
-        const inputsParam = inputs[searchParam].toString().toLowerCase();
-        if (!petParam.includes(inputsParam)) {
-          return false;
-        }
-      }
-      return true;
-    });
-    setSearchPets(filtered);
   }
 
   useEffect(() => {
@@ -72,9 +73,7 @@ export default function SearchContextWrapper({ children }) {
         toggleSearchType,
         handleChange,
         searchedPets,
-        handleSearch,
-        petList,
-        getAllPets,
+        searchPets,
         getPetById,
         currentPet,
         setCurrentPet,

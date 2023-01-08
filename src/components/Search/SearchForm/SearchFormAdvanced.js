@@ -2,17 +2,17 @@ import { useContext } from "react";
 import { SearchContext } from "../SearchContext";
 
 export default function SearchFormAdvanced() {
-  const { handleChange, handleSearch, inputs } = useContext(SearchContext);
+  const { handleChange, searchPets, inputs } = useContext(SearchContext);
 
   return (
-    <form onSubmit={handleSearch}>
+    <form onSubmit={searchPets}>
       <fieldset>
         <legend>Advanced search</legend>
         <label htmlFor="pet-select">Type</label>
         <select
           name="type"
           id="pet-select"
-          defaultValue={inputs.type}
+          defaultValue={inputs?.type}
           onChange={handleChange}>
           <option value="">All</option>
           <option value="Dog">Dog</option>
@@ -24,7 +24,7 @@ export default function SearchFormAdvanced() {
         <select
           name="adoptionStatus"
           id="adoptionStatus"
-          defaultValue={inputs.adoptionStatus}
+          defaultValue={inputs?.adoptionStatus}
           onChange={handleChange}>
           <option value="">All</option>
           <option value="Available">Available</option>
