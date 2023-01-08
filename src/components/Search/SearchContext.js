@@ -7,28 +7,36 @@ export default function SearchContextWrapper({ children }) {
   const [advancedSearch, setAdvancedSearch] = useState(
     JSON.parse(localStorage.getItem("search")) || false
   );
-  const [inputs, setInputs] = useState({type: "", adoptionStatus: ""});
+  const [inputs, setInputs] = useState({ type: "", adoptionStatus: "" });
   const [searchedPets, setSearchPets] = useState([]);
   const [currentPet, setCurrentPet] = useState();
+
+  function inputsToMongoParams() {
+    const myInputs = { ...inputs };
+    for (const input in myInputs) {
+      if (myInputs[input] === "" || myInputs[input] === undefined) {
+        delete myInputs[input];
+      }
+    }
+    if (myInputs?.name) {
+      myInputs.name = { $regex: `${myInputs.name}`, $options: "i" };
+    }
+    if (myInputs === undefined) {
+      myInputs === {};
+    }
+    return myInputs;
+  }
 
   async function searchPets(e) {
     if (e) {
       e.preventDefault();
     }
-    for (const input in inputs) {
-      if (inputs[input] === "" || inputs[input] === undefined) {
-        delete inputs[input];
-      }
-    }
-    if (inputs.name) {
-      inputs.name = { $regex: `${inputs.name}`, $options: "i" };
-    }
+    const myInputs = inputsToMongoParams();
     try {
       const retrievedPets = await axios.get(
         `${process.env.REACT_APP_URL}/pets`,
-        { params: { query: inputs } }
+        { params: { query: myInputs } }
       );
-      console.log(retrievedPets);
       setSearchPets(retrievedPets.data);
     } catch (err) {
       console.error(err);
@@ -52,7 +60,6 @@ export default function SearchContextWrapper({ children }) {
   }, []);
 
   function toggleSearchType() {
-    console.log("toggle")
     setAdvancedSearch(!advancedSearch);
     setInputs();
   }

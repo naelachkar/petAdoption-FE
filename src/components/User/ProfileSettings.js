@@ -23,7 +23,7 @@ export default function ProfileSettings() {
     getCurrentUserInfo();
   }, []);
 
-  if (!currentUser) return;
+  if (!currentUser) return <NavBar />;
 
   return (
     <>
