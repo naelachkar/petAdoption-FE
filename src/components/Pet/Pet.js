@@ -12,7 +12,9 @@ export default function Pet() {
     getPetById(currentId);
   }, []);
 
-  if (!currentPet) return;
+  if (!currentPet) return <NavBar />;
+
+  document.title = currentPet.name;
 
   return (
     <>

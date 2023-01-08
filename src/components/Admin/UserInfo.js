@@ -7,14 +7,14 @@ export default function UserInfo() {
 
   const { getUserByIdFull, selectedUser } = useContext(AdminContext);
 
-  document.title = `${selectedUser.firstName} ${selectedUser.lastName}`
-
   useEffect(() => {
     getUserByIdFull(id);
   }, []);
 
-  if (!selectedUser) return;
+  if (!selectedUser) return <NavBar />;
 
+  document.title = `${selectedUser.firstName} ${selectedUser.lastName}`
+  
   return (
     <>
       <NavBar />
