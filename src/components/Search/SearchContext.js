@@ -61,7 +61,7 @@ export default function SearchContextWrapper({ children }) {
 
   function toggleSearchType() {
     setAdvancedSearch(!advancedSearch);
-    setInputs();
+    setInputs({});
   }
 
   function handleChange(e) {

@@ -10,12 +10,14 @@ export default function SearchResults() {
 
   return searchedPets.length !== 0 ? (
     <div className="petList">
-      {searchedPets.map(({ type, name, breed, _id }) => {
+      {searchedPets.map(({ type, name, breed, _id, picture }) => {
         return (
-          <div key={_id} className="petCard" onClick={() => navigate(`/pet?id=${_id}`)}>
-            <span>{type}</span>
-            <span>{name}</span>
-            <span>{breed}</span>
+          <div
+            key={_id}
+            className="petCard"
+            onClick={() => navigate(`/pet?id=${_id}`)}>
+            {picture ? <img src={picture}></img> : null}
+            <span className="petText">{name}</span>
           </div>
         );
       })}
