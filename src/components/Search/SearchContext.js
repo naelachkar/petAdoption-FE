@@ -9,7 +9,6 @@ export default function SearchContextWrapper({ children }) {
   );
   const [inputs, setInputs] = useState({ type: "", adoptionStatus: "" });
   const [searchedPets, setSearchPets] = useState([]);
-  const [currentPet, setCurrentPet] = useState();
 
   function inputsToMongoParams() {
     const myInputs = { ...inputs };
@@ -43,17 +42,6 @@ export default function SearchContextWrapper({ children }) {
     }
   }
 
-  async function getPetById(id) {
-    try {
-      const petById = await axios.get(
-        `${process.env.REACT_APP_URL}/pets/:${id}`
-      );
-      setCurrentPet(petById.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   //! On first render, doesn't show first search - temporary hack:
   useEffect(() => {
     searchPets();
@@ -81,9 +69,6 @@ export default function SearchContextWrapper({ children }) {
         handleChange,
         searchedPets,
         searchPets,
-        getPetById,
-        currentPet,
-        setCurrentPet,
         inputs,
       }}>
       {children}

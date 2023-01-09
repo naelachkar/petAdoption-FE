@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
-import { SearchContext } from "../Search/SearchContext";
+import { PetContext } from "./PetContext";
 
 export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
-  const { getPetById, currentPet } = useContext(SearchContext);
+  const { getPetById, currentPet } = useContext(PetContext);
 
   useEffect(() => {
     getPetById(currentId);
@@ -21,6 +21,7 @@ export default function Pet() {
       <NavBar />
       <h1>{currentPet.name}</h1>
       <h2>{currentPet.type}</h2>
+      {currentPet.picture ? <img src={currentPet.picture} /> : null}
       <h3>{currentPet.breed}</h3>
       <h4>{currentPet.adoptionStatus}</h4>
       <ul>
