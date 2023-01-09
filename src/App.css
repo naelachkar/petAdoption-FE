@@ -82,3 +82,7 @@ label {
   margin-bottom: 0.125rem;
   align-self: flex-start;
 }
+
+ul {
+  text-align: start;
+}

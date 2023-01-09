@@ -1,0 +1,14 @@
+.unavailable {
+  padding: 0.75rem;
+  border: 0;
+  font-size: 1rem;
+  background-color: #000;
+  color: white;
+  opacity: 50%;
+}
+
+.unavailable:hover {
+  background-color: #000;
+  opacity: 50%;
+  cursor: default;
+}
