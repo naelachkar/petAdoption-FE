@@ -7,7 +7,7 @@ import "./Pet.css";
 export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
-  const { getPetById, currentPet, savePet } = useContext(PetContext);
+  const { getPetById, currentPet, savePet, adoptOrFosterPet } = useContext(PetContext);
 
   useEffect(() => {
     getPetById(currentId);
@@ -38,8 +38,8 @@ export default function Pet() {
   } else if (adoptionStatus === "Available") {
     actionButton = (
       <>
-        <button>Adopt</button>
-        <button>Foster</button>
+        <button onClick={() => adoptOrFosterPet(currentId, true)}>Adopt</button>
+        <button onClick={() => adoptOrFosterPet(currentId, false)}>Foster</button>
       </>
     );
   }
