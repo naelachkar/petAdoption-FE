@@ -1,4 +1,3 @@
-import Modal from "../LoginSignup/Modal";
 import NavBar from "../NavBar/NavBar";
 import "./Search.css";
 import SearchBar from "./SearchBar";
@@ -7,7 +6,7 @@ import SearchResults from "./SearchResults";
 
 export default function Search() {
   document.title = "Search";
-  
+
   return (
     <>
       <NavBar />
@@ -15,7 +14,6 @@ export default function Search() {
       <SearchBar />
       <SearchForm />
       <SearchResults />
-      <Modal />
     </>
   );
 }
