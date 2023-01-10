@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import "./Pet.css";
 import NavBar from "../../NavBar/NavBar";
 import { PetContext } from "../PetContext";
+import PetOwnButton from "./PetOwnButton";
 
 export default function Pet() {
   const location = useLocation();
@@ -43,28 +44,6 @@ export default function Pet() {
 
   document.title = name;
 
-  let actionButton;
-  if (isLoggedIn) {
-    if (adoptionStatus === "Adopted") {
-      actionButton = <button className="unavailable">Adopted</button>;
-    } else if (adoptionStatus === "Fostered") {
-      actionButton = <button className="unavailable">Fostered</button>;
-    } else if (adoptionStatus === "Available") {
-      actionButton = (
-        <>
-          <button onClick={() => adoptOrFosterPet(currentId, true)}>
-            Adopt
-          </button>
-          <button onClick={() => adoptOrFosterPet(currentId, false)}>
-            Foster
-          </button>
-        </>
-      );
-    }
-  } else {
-    actionButton = <button className="available">Available</button>;
-  }
-
   let saveButton;
   isLoggedIn
     ? (saveButton = <button onClick={() => savePet(currentId)}>Save</button>)
@@ -78,7 +57,7 @@ export default function Pet() {
       {picture ? <img src={picture} /> : null}
       <h3>{breed}</h3>
       <div>
-        {actionButton}
+        <PetOwnButton />
         {saveButton}
       </div>
       <ul>

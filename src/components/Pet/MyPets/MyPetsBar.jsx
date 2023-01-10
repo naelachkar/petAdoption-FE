@@ -7,7 +7,7 @@ export default function MyPetsBar() {
   return (
     <div className="search-bar">
       <button onClick={() => toggleMyPets(true)}>Owned pets</button>
-      <button onClick={() => toggleMyPets(false)}>Saved search</button>
+      <button onClick={() => toggleMyPets(false)}>Saved pets</button>
     </div>
   );
 }
