@@ -13,17 +13,19 @@ export default function MyOwnedPets() {
     adoptedList = (
       <>
         <h3>Adopted pets:</h3>
-        {myPets.adoptedPets.map(({ name, _id, picture }) => {
-          return (
-            <div
-              key={_id}
-              className="petCard"
-              onClick={() => navigate(`/pet?id=${_id}`)}>
-              {picture && <img src={picture}></img>}
-              <span className="petText">{name}</span>
-            </div>
-          );
-        })}
+        <div className="petList">
+          {myPets.adoptedPets.map(({ name, _id, picture }) => {
+            return (
+              <div
+                key={_id}
+                className="petCard"
+                onClick={() => navigate(`/pet?id=${_id}`)}>
+                {picture && <img src={picture}></img>}
+                <span className="petText">{name}</span>
+              </div>
+            );
+          })}
+        </div>
       </>
     );
   }
@@ -32,17 +34,19 @@ export default function MyOwnedPets() {
     fosteredList = (
       <>
         <h3>Fostered pets:</h3>
-        {myPets.fosteredPets.map(({ name, _id, picture }) => {
-          return (
-            <div
-              key={_id}
-              className="petCard"
-              onClick={() => navigate(`/pet?id=${_id}`)}>
-              {picture && <img src={picture}></img>}
-              <span className="petText">{name}</span>
-            </div>
-          );
-        })}
+        <div className="petList">
+          {myPets.fosteredPets.map(({ name, _id, picture }) => {
+            return (
+              <div
+                key={_id}
+                className="petCard"
+                onClick={() => navigate(`/pet?id=${_id}`)}>
+                {picture && <img src={picture}></img>}
+                <span className="petText">{name}</span>
+              </div>
+            );
+          })}
+        </div>
       </>
     );
   }

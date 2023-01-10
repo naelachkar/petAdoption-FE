@@ -10,17 +10,19 @@ export default function MySavedPets() {
     return (
       <>
         <h3>Saved pets:</h3>
-        {myPets.savedPets.map(({ name, _id, picture }) => {
-          return (
-            <div
-              key={_id}
-              className="petCard"
-              onClick={() => navigate(`/pet?id=${_id}`)}>
-              {picture && <img src={picture}></img>}
-              <span className="petText">{name}</span>
-            </div>
-          );
-        })}
+        <div className="petList">
+          {myPets.savedPets.map(({ name, _id, picture }) => {
+            return (
+              <div
+                key={_id}
+                className="petCard"
+                onClick={() => navigate(`/pet?id=${_id}`)}>
+                {picture && <img src={picture}></img>}
+                <span className="petText">{name}</span>
+              </div>
+            );
+          })}
+        </div>
       </>
     );
   }

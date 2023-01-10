@@ -9,7 +9,7 @@ import PetSaveButton from "./PetSaveButton";
 export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
-  const { getPetById, currentPet, getMyPets, myPets } = useContext(PetContext);
+  const { getPetById, currentPet, myPets } = useContext(PetContext);
 
   useEffect(() => {
     getPetById(currentId);

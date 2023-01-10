@@ -13,17 +13,19 @@ export default function UserInfo() {
 
   if (!selectedUser) return <NavBar />;
 
-  document.title = `${selectedUser.firstName} ${selectedUser.lastName}`
-  
+  document.title = `${selectedUser.firstName} ${selectedUser.lastName}`;
+
   return (
     <>
       <NavBar />
-      <h1>{selectedUser.firstName} {selectedUser.lastName}</h1>
+      <h1>
+        {selectedUser.firstName} {selectedUser.lastName}
+      </h1>
       <ul>
         <li>Email: {selectedUser.email}</li>
         <li>Phone number: {selectedUser.phoneNumber}</li>
         <li>Bio: {selectedUser.bio}</li>
-        <li>Admin: {selectedUser.admin}</li>
+        <li>Admin: {selectedUser.admin ? "Yes" : "No"}</li>
       </ul>
     </>
   );
