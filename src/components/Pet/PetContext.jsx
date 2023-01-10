@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const PetContext = createContext();
 
@@ -65,6 +65,7 @@ export default function PetContextWrapper({ children }) {
         { adoptOrFoster },
         headersConfig
       );
+      await getMyPets();
       alert("Successfull"); //TODO indicate whether was adopted or fostered
     } catch (err) {
       alert(err.response.data);

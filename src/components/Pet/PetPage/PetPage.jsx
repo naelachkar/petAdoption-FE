@@ -1,21 +1,30 @@
 import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
-import { PetContext } from "./PetContext";
 import "./Pet.css";
-import { AuthenticationContext } from "../../AuthenticationContext";
+import NavBar from "../../NavBar/NavBar";
+import { PetContext } from "../PetContext";
 
 export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
-  const { getPetById, currentPet, savePet, adoptOrFosterPet } =
-    useContext(PetContext);
+  const {
+    getPetById,
+    currentPet,
+    savePet,
+    adoptOrFosterPet,
+    getMyPets,
+    myPets,
+  } = useContext(PetContext);
 
   const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
 
   useEffect(() => {
-    getPetById(currentId);
+    getMyPets();
   }, []);
+
+  useEffect(() => {
+    getPetById(currentId);
+  }, [myPets]);
 
   if (!currentPet) return <NavBar />;
 
@@ -53,7 +62,7 @@ export default function Pet() {
       );
     }
   } else {
-    actionButton = <button className="available">Available</button>
+    actionButton = <button className="available">Available</button>;
   }
 
   let saveButton;

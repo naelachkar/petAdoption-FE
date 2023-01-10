@@ -6,7 +6,7 @@ import Search from "./components/Search/Search";
 import AuthenticationContextWrapper from "./AuthenticationContext";
 import PrivateRoute from "./components/Utilities/PrivateRoute";
 import ProfileSettings from "./components/User/ProfileSettings";
-import Pet from "./components/Pet/Pet";
+import Pet from "./components/Pet/PetPage/PetPage";
 import SearchContextWrapper from "./components/Search/SearchContext";
 import AdminPage from "./components/Admin/AdminPage";
 import AdminRoute from "./components/Utilities/AdminRoute";
