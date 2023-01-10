@@ -6,10 +6,18 @@ export const PetContext = createContext();
 export default function PetContextWrapper({ children }) {
   const [currentPet, setCurrentPet] = useState();
 
-  async function getMyPets() {
+  async function testGetPets() {
     const token = JSON.parse(localStorage.getItem("token"));
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
-    // TODO define and use backend route ‘/pet/user/:id’
+    try {
+      const pets = await axios.get(
+        `${process.env.REACT_APP_URL}/pets/user/:id`,
+        headersConfig
+      );
+      console.log(pets.data.pets);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function getPetById(id) {
@@ -44,10 +52,10 @@ export default function PetContextWrapper({ children }) {
     try {
       const adopted = await axios.post(
         `${process.env.REACT_APP_URL}/pets/:${id}/adopt`,
-        {adoptOrFoster},
+        { adoptOrFoster },
         headersConfig
       );
-      alert("Successfull") //TODO indicate whether was adopted or fostered
+      alert("Successfull"); //TODO indicate whether was adopted or fostered
     } catch (err) {
       alert(err.response.data);
     }
@@ -55,7 +63,13 @@ export default function PetContextWrapper({ children }) {
 
   return (
     <PetContext.Provider
-      value={{ currentPet, getPetById, savePet, adoptOrFosterPet }}>
+      value={{
+        currentPet,
+        getPetById,
+        savePet,
+        adoptOrFosterPet,
+        testGetPets,
+      }}>
       {children}
     </PetContext.Provider>
   );

@@ -87,8 +87,10 @@ export default function AuthenticationContextWrapper({ children }) {
         email,
         password,
       });
+      console.log(res);
       setToken(res.data.token);
       localStorage.setItem("token", JSON.stringify(res.data.token));
+      localStorage.setItem("userId", JSON.stringify(res.data.userId));
       await getCurrentUserInfo();
       setPassword("");
       setEmail("");
@@ -105,6 +107,7 @@ export default function AuthenticationContextWrapper({ children }) {
     setCurrentUser(undefined);
     localStorage.removeItem("token");
     localStorage.removeItem("admin");
+    localStorage.removeItem("userId");
     resetInputs();
     navigate("/");
   }
@@ -112,9 +115,10 @@ export default function AuthenticationContextWrapper({ children }) {
   const getCurrentUserInfo = async () => {
     const token = JSON.parse(localStorage.getItem("token"));
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
+    const userId = JSON.parse(localStorage.getItem("userId"));
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}/user/:id`,
+        `${process.env.REACT_APP_URL}/user/:${userId}`,
         headersConfig
       );
       setCurrentUser(res.data);
@@ -138,7 +142,10 @@ export default function AuthenticationContextWrapper({ children }) {
       confirmPassword,
     };
     for (const key in updatedInfo) {
-      if (updatedInfo[key] === undefined || updatedInfo[key] === currentUser[key]) {
+      if (
+        updatedInfo[key] === undefined ||
+        updatedInfo[key] === currentUser[key]
+      ) {
         delete updatedInfo[key];
       }
     }
