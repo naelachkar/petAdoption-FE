@@ -1,7 +1,8 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
-import { PetContext } from "./PetContext";
+import NavBar from "../../NavBar/NavBar";
+import { PetContext } from "../PetContext";
+import MyPetsBar from "./MyPetsBar";
 
 export default function MyPets() {
   document.title = "My Pets";
@@ -80,6 +81,7 @@ export default function MyPets() {
     <>
       <NavBar />
       <h1>My Pets</h1>
+      <MyPetsBar />
       {!adoptedList && !fosteredList && !savedList ? (
         <h3>Looks like you're pet-less and fancy-free!</h3>
       ) : (

@@ -10,7 +10,7 @@ import Pet from "./components/Pet/Pet";
 import SearchContextWrapper from "./components/Search/SearchContext";
 import AdminPage from "./components/Admin/AdminPage";
 import AdminRoute from "./components/Utilities/AdminRoute";
-import MyPets from "./components/Pet/MyPets";
+import MyPets from "./components/Pet/MyPets/MyPets";
 import AdminContextWrapper from "./components/Admin/AdminContext";
 import UserInfo from "./components/Admin/UserInfo";
 import PetContextWrapper from "./components/Pet/PetContext";

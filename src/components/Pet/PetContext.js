@@ -6,6 +6,14 @@ export const PetContext = createContext();
 export default function PetContextWrapper({ children }) {
   const [currentPet, setCurrentPet] = useState();
   const [myPets, setMyPets] = useState();
+  const [ownedOrSaved, setOwnedOrSaved] = useState(
+    JSON.parse(localStorage.getItem("ownedOrSaved")) || false
+  );
+
+  function toggleMyPets(bool) {
+    setOwnedOrSaved(bool);
+    localStorage.setItem("ownedOrSaved", JSON.stringify(bool));
+  }
 
   async function getMyPets() {
     const token = JSON.parse(localStorage.getItem("token"));
@@ -72,6 +80,7 @@ export default function PetContextWrapper({ children }) {
         adoptOrFosterPet,
         getMyPets,
         myPets,
+        toggleMyPets,
       }}>
       {children}
     </PetContext.Provider>

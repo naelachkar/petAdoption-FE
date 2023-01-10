@@ -47,8 +47,9 @@ export default function SearchContextWrapper({ children }) {
     searchPets();
   }, []);
 
-  function toggleSearchType() {
-    setAdvancedSearch(!advancedSearch);
+  function toggleSearchType(bool) {
+    setAdvancedSearch(bool);
+    localStorage.setItem("search", JSON.stringify(bool))
     setInputs({});
   }
 
@@ -56,9 +57,9 @@ export default function SearchContextWrapper({ children }) {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   }
 
-  useEffect(() => {
-    localStorage.setItem("search", JSON.stringify(advancedSearch));
-  }, [advancedSearch]);
+  // useEffect(() => {
+  //   localStorage.setItem("search", JSON.stringify(advancedSearch));
+  // }, [advancedSearch]);
 
   return (
     <SearchContext.Provider

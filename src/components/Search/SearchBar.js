@@ -6,8 +6,8 @@ export default function SearchBar() {
 
   return (
     <div className="search-bar">
-      <button onClick={toggleSearchType}>Simple search</button>
-      <button onClick={toggleSearchType}>Advanced search</button>
+      <button onClick={() => toggleSearchType(false)}>Simple search</button>
+      <button onClick={() => toggleSearchType(true)}>Advanced search</button>
     </div>
   );
 }
