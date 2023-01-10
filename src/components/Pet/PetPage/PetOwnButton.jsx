@@ -3,7 +3,7 @@ import { PetContext } from "../PetContext";
 
 export default function PetOwnButton() {
   const currentId = location.search.slice(4);
-  const { currentPet, adoptOrFosterPet, getMyPets, myPets } =
+  const { currentPet, adoptOrFosterPet, getMyPets, myPets, returnPet } =
     useContext(PetContext);
   const { adoptionStatus } = currentPet;
   const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
@@ -14,6 +14,8 @@ export default function PetOwnButton() {
     }
   }, []);
 
+  if (!myPets) return;
+
   let ownButton;
 
   switch (true) {
@@ -22,7 +24,9 @@ export default function PetOwnButton() {
         ownButton = (
           <>
             <button className="unavailable">Adopted by you</button>
-            <button>Cancel adoption</button>
+            <button onClick={() => returnPet(currentId, true)}>
+              Cancel adoption
+            </button>
           </>
         );
       } else {
@@ -34,7 +38,9 @@ export default function PetOwnButton() {
         ownButton = (
           <>
             <button className="unavailable">Fostered by you</button>
-            <button>Cancel fostering</button>
+            <button onClick={() => returnPet(currentId, false)}>
+              Cancel fostering
+            </button>
           </>
         );
       } else {

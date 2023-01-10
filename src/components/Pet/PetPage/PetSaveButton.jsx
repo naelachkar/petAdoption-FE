@@ -6,6 +6,8 @@ export default function PetOwnButton() {
   const { savePet, myPets } = useContext(PetContext);
   const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
 
+  if (!myPets) return;
+
   let saveButton;
 
   if (isLoggedIn) {

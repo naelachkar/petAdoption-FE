@@ -66,7 +66,23 @@ export default function PetContextWrapper({ children }) {
         headersConfig
       );
       await getMyPets();
-      alert("Successfull"); //TODO indicate whether was adopted or fostered
+      alert("Successful"); //TODO indicate whether was adopted or fostered
+    } catch (err) {
+      alert(err.response.data);
+    }
+  }
+
+  async function returnPet(id, adoptOrFoster) {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
+    try {
+      const returned = await axios.post(
+        `${process.env.REACT_APP_URL}/pets/:${id}/return`,
+        { adoptOrFoster },
+        headersConfig
+      );
+      await getMyPets();
+      alert("Return successful");
     } catch (err) {
       alert(err.response.data);
     }
@@ -83,6 +99,7 @@ export default function PetContextWrapper({ children }) {
         myPets,
         toggleMyPets,
         ownedOrSaved,
+        returnPet,
       }}>
       {children}
     </PetContext.Provider>
