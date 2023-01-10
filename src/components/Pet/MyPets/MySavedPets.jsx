@@ -16,7 +16,7 @@ export default function MySavedPets() {
               key={_id}
               className="petCard"
               onClick={() => navigate(`/pet?id=${_id}`)}>
-              {picture ? <img src={picture}></img> : null}
+              {picture && <img src={picture}></img>}
               <span className="petText">{name}</span>
             </div>
           );

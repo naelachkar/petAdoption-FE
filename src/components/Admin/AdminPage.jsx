@@ -17,7 +17,7 @@ export default function AdminPage() {
     <>
       <NavBar />
       <h1>Admin Page</h1>
-      {allUsers.length !== 0 ? (
+      {allUsers.length !== 0 && (
         <div className="petList">
           <h3>List of users</h3>
           {allUsers.map(
@@ -39,7 +39,7 @@ export default function AdminPage() {
             }
           )}
         </div>
-      ) : null}
+      )}
     </>
   );
 }

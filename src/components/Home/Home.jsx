@@ -13,13 +13,15 @@ export default function Home() {
     }
   }, []);
 
-  return currentUser ? (
-    <>
-      <NavBar />
-      <h1>
-        Hello {currentUser.firstName ? `${currentUser.firstName}` : null}{" "}
-        {currentUser.lastName ? `${currentUser.lastName}` : null}{" "}
-      </h1>
-    </>
-  ) : null;
+  return (
+    currentUser && (
+      <>
+        <NavBar />
+        <h1>
+          Hello {currentUser.firstName && `${currentUser.firstName}`}{" "}
+          {currentUser.lastName && `${currentUser.lastName}`}{" "}
+        </h1>
+      </>
+    )
+  );
 }

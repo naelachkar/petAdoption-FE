@@ -12,10 +12,6 @@ export default function Pet() {
   const { getPetById, currentPet, getMyPets, myPets } = useContext(PetContext);
 
   useEffect(() => {
-    getMyPets();
-  }, []);
-
-  useEffect(() => {
     getPetById(currentId);
   }, [myPets]);
 
@@ -40,7 +36,7 @@ export default function Pet() {
       <NavBar />
       <h1>{name}</h1>
       <h2>{type}</h2>
-      {picture ? <img src={picture} /> : null}
+      {picture && <img src={picture} />}
       <h3>{breed}</h3>
       <div>
         <PetOwnButton />

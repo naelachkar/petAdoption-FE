@@ -20,9 +20,9 @@ export default function NavBar() {
             <button onClick={() => navigate("/profilePage")}>
               Profile Settings
             </button>
-            {localStorage.getItem("admin") === "true" ? (
+            {localStorage.getItem("admin") === "true" && (
               <button onClick={() => navigate("/admin")}>Admin Page</button>
-            ) : null}
+            )}
             <button onClick={logout}>Log out</button>
           </nav>
         </div>
