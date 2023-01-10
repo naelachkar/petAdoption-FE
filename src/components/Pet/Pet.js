@@ -3,11 +3,14 @@ import { useLocation } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { PetContext } from "./PetContext";
 import "./Pet.css";
+import { AuthenticationContext } from "../../AuthenticationContext";
 
 export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
-  const { getPetById, currentPet, savePet, adoptOrFosterPet } = useContext(PetContext);
+  const { getPetById, currentPet, savePet, adoptOrFosterPet } =
+    useContext(PetContext);
+  const { currentUser } = useContext(AuthenticationContext);
 
   useEffect(() => {
     getPetById(currentId);
@@ -31,20 +34,31 @@ export default function Pet() {
   document.title = name;
 
   let actionButton;
-  if (adoptionStatus === "Adopted") {
-    actionButton = <button className="unavailable">Adopted</button>;
-  } else if (adoptionStatus === "Fostered") {
-    actionButton = <button className="unavailable">Fostered</button>;
-  } else if (adoptionStatus === "Available") {
-    actionButton = (
-      <>
-        <button onClick={() => adoptOrFosterPet(currentId, true)}>Adopt</button>
-        <button onClick={() => adoptOrFosterPet(currentId, false)}>Foster</button>
-      </>
-    );
+  if (currentUser) {
+    if (adoptionStatus === "Adopted") {
+      actionButton = <button className="unavailable">Adopted</button>;
+    } else if (adoptionStatus === "Fostered") {
+      actionButton = <button className="unavailable">Fostered</button>;
+    } else if (adoptionStatus === "Available") {
+      actionButton = (
+        <>
+          <button onClick={() => adoptOrFosterPet(currentId, true)}>
+            Adopt
+          </button>
+          <button onClick={() => adoptOrFosterPet(currentId, false)}>
+            Foster
+          </button>
+        </>
+      );
+    }
+  } else {
+    actionButton = <button className="available">Available</button>
   }
 
-  const saveButton = <button onClick={() => savePet(currentId)}>Save</button>;
+  let saveButton;
+  currentUser
+    ? (saveButton = <button onClick={() => savePet(currentId)}>Save</button>)
+    : (saveButton = null);
 
   return (
     <>

@@ -12,3 +12,9 @@
   opacity: 50%;
   cursor: default;
 }
+
+.available:hover {
+  cursor: default;
+  background-color: black;
+  transition: unset;
+}
