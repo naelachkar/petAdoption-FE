@@ -4,20 +4,12 @@ import "./Pet.css";
 import NavBar from "../../NavBar/NavBar";
 import { PetContext } from "../PetContext";
 import PetOwnButton from "./PetOwnButton";
+import PetSaveButton from "./PetSaveButton";
 
 export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
-  const {
-    getPetById,
-    currentPet,
-    savePet,
-    adoptOrFosterPet,
-    getMyPets,
-    myPets,
-  } = useContext(PetContext);
-
-  const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
+  const { getPetById, currentPet, getMyPets, myPets } = useContext(PetContext);
 
   useEffect(() => {
     getMyPets();
@@ -34,7 +26,6 @@ export default function Pet() {
     type,
     picture,
     breed,
-    adoptionStatus,
     color,
     height,
     weight,
@@ -43,11 +34,6 @@ export default function Pet() {
   } = currentPet;
 
   document.title = name;
-
-  let saveButton;
-  isLoggedIn
-    ? (saveButton = <button onClick={() => savePet(currentId)}>Save</button>)
-    : (saveButton = null);
 
   return (
     <>
@@ -58,7 +44,7 @@ export default function Pet() {
       <h3>{breed}</h3>
       <div>
         <PetOwnButton />
-        {saveButton}
+        <PetSaveButton />
       </div>
       <ul>
         <li>Colour: {color}</li>
