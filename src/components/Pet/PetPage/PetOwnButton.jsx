@@ -14,8 +14,6 @@ export default function PetOwnButton() {
     }
   }, []);
 
-  // if (!myPets) return;
-
   let ownButton;
 
   switch (true) {
