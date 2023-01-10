@@ -9,7 +9,7 @@ import MySavedPets from "./MySavedPets";
 export default function MyPets() {
   document.title = "My Pets";
 
-  const { getMyPets, myPets } = useContext(PetContext);
+  const { getMyPets, myPets, ownedOrSaved } = useContext(PetContext);
 
   useEffect(() => {
     getMyPets();
@@ -37,8 +37,7 @@ export default function MyPets() {
       pageContent = (
         <>
           <MyPetsBar />
-          <MyOwnedPets />
-          <MySavedPets />
+          {ownedOrSaved ? <MyOwnedPets /> : <MySavedPets />}
         </>
       );
   }

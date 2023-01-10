@@ -81,6 +81,7 @@ export default function PetContextWrapper({ children }) {
         getMyPets,
         myPets,
         toggleMyPets,
+        ownedOrSaved,
       }}>
       {children}
     </PetContext.Provider>
