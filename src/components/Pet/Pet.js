@@ -10,7 +10,8 @@ export default function Pet() {
   const currentId = location.search.slice(4);
   const { getPetById, currentPet, savePet, adoptOrFosterPet } =
     useContext(PetContext);
-  const { currentUser } = useContext(AuthenticationContext);
+
+  const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
 
   useEffect(() => {
     getPetById(currentId);
@@ -34,7 +35,7 @@ export default function Pet() {
   document.title = name;
 
   let actionButton;
-  if (currentUser) {
+  if (isLoggedIn) {
     if (adoptionStatus === "Adopted") {
       actionButton = <button className="unavailable">Adopted</button>;
     } else if (adoptionStatus === "Fostered") {
@@ -56,7 +57,7 @@ export default function Pet() {
   }
 
   let saveButton;
-  currentUser
+  isLoggedIn
     ? (saveButton = <button onClick={() => savePet(currentId)}>Save</button>)
     : (saveButton = null);
 

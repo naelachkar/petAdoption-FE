@@ -87,7 +87,6 @@ export default function AuthenticationContextWrapper({ children }) {
         email,
         password,
       });
-      console.log(res);
       setToken(res.data.token);
       localStorage.setItem("token", JSON.stringify(res.data.token));
       localStorage.setItem("userId", JSON.stringify(res.data.userId));

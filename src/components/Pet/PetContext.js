@@ -5,8 +5,9 @@ export const PetContext = createContext();
 
 export default function PetContextWrapper({ children }) {
   const [currentPet, setCurrentPet] = useState();
+  const [myPets, setMyPets] = useState();
 
-  async function testGetPets() {
+  async function getMyPets() {
     const token = JSON.parse(localStorage.getItem("token"));
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
     const userId = JSON.parse(localStorage.getItem("userId"));
@@ -16,6 +17,7 @@ export default function PetContextWrapper({ children }) {
         headersConfig
       );
       console.log(pets.data.pets);
+      setMyPets(pets.data.pets);
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +71,8 @@ export default function PetContextWrapper({ children }) {
         getPetById,
         savePet,
         adoptOrFosterPet,
-        testGetPets,
+        getMyPets,
+        myPets,
       }}>
       {children}
     </PetContext.Provider>
