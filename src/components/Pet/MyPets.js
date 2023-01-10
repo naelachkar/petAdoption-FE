@@ -17,7 +17,7 @@ export default function MyPets() {
   if (!myPets) return <NavBar />;
 
   let adoptedList;
-  if (myPets.adoptedPets) {
+  if (myPets.adoptedPets.length > 0) {
     adoptedList = (
       <>
         <h3>Adopted pets:</h3>
@@ -37,7 +37,7 @@ export default function MyPets() {
   }
 
   let fosteredList;
-  if (myPets.fosteredPets) {
+  if (myPets.fosteredPets.length > 0) {
     fosteredList = (
       <>
         <h3>Fostered pets:</h3>
@@ -57,7 +57,7 @@ export default function MyPets() {
   }
 
   let savedList;
-  if (myPets.fosteredPets) {
+  if (myPets.savedPets.length > 0) {
     savedList = (
       <>
         <h3>Saved pets:</h3>
@@ -80,9 +80,15 @@ export default function MyPets() {
     <>
       <NavBar />
       <h1>My Pets</h1>
-      {adoptedList}
-      {fosteredList}
-      {savedList}
+      {!adoptedList && !fosteredList && !savedList ? (
+        <h3>Looks like you're pet-less and fancy-free!</h3>
+      ) : (
+        <>
+          {adoptedList}
+          {fosteredList}
+          {savedList}
+        </>
+      )}
     </>
   );
 }

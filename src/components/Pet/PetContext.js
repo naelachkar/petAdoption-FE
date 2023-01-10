@@ -16,7 +16,6 @@ export default function PetContextWrapper({ children }) {
         `${process.env.REACT_APP_URL}/pets/user/:${userId}`,
         headersConfig
       );
-      console.log(pets.data.pets);
       setMyPets(pets.data.pets);
     } catch (err) {
       console.log(err);
