@@ -132,6 +132,7 @@ export default function AuthenticationContextWrapper({ children }) {
     e.preventDefault();
     const token = JSON.parse(localStorage.getItem("token"));
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
+    const userId = JSON.parse(localStorage.getItem("userId"));
     const updatedInfo = {
       firstName,
       lastName,
@@ -151,7 +152,7 @@ export default function AuthenticationContextWrapper({ children }) {
     }
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_URL}/user/:id`,
+        `${process.env.REACT_APP_URL}/user/:${userId}`,
         updatedInfo,
         headersConfig
       );
