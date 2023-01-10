@@ -7,7 +7,7 @@ export default function PetOwnButton() {
   const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
 
   const saveButton = isLoggedIn && (
-    <button onClick={() => savePet(currentId)}>Save</button>
+    <button onClick={() => savePet(currentId)}>Follow</button>
   );
 
   return saveButton;

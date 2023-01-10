@@ -6,8 +6,8 @@ export default function MyPetsBar() {
 
   return (
     <div className="search-bar">
-      <button onClick={() => toggleMyPets(true)}>Owned pets</button>
-      <button onClick={() => toggleMyPets(false)}>Saved pets</button>
+      <button onClick={() => toggleMyPets(true)}>Pets I own</button>
+      <button onClick={() => toggleMyPets(false)}>Pets I follow</button>
     </div>
   );
 }

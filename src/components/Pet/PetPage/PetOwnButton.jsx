@@ -1,19 +1,49 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { PetContext } from "../PetContext";
 
 export default function PetOwnButton() {
   const currentId = location.search.slice(4);
-  const { currentPet, adoptOrFosterPet } = useContext(PetContext);
+  const { currentPet, adoptOrFosterPet, getMyPets, myPets } =
+    useContext(PetContext);
   const { adoptionStatus } = currentPet;
   const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      getMyPets();
+    }
+  }, []);
+
+  // if (!myPets) return;
+
   let ownButton;
-  if (isLoggedIn) {
-    if (adoptionStatus === "Adopted") {
-      ownButton = <button className="unavailable">Adopted</button>;
-    } else if (adoptionStatus === "Fostered") {
-      ownButton = <button className="unavailable">Fostered</button>;
-    } else if (adoptionStatus === "Available") {
+
+  switch (true) {
+    case isLoggedIn && adoptionStatus === "Adopted":
+      if (myPets.adoptedPets.find((pet) => pet._id === currentId)) {
+        ownButton = (
+          <>
+            <button className="unavailable">Adopted by you</button>
+            <button>Cancel adoption</button>
+          </>
+        );
+      } else {
+        ownButton = <button className="unavailable">Adopted</button>;
+      }
+      break;
+    case isLoggedIn && adoptionStatus === "Fostered":
+      if (myPets.fosteredPets.find((pet) => pet._id === currentId)) {
+        ownButton = (
+          <>
+            <button className="unavailable">Fostered by you</button>
+            <button>Cancel fostering</button>
+          </>
+        );
+      } else {
+        ownButton = <button className="unavailable">Fostered</button>;
+      }
+      break;
+    case isLoggedIn && adoptionStatus === "Available":
       ownButton = (
         <>
           <button onClick={() => adoptOrFosterPet(currentId, true)}>
@@ -24,9 +54,16 @@ export default function PetOwnButton() {
           </button>
         </>
       );
-    }
-  } else {
-    ownButton = <button className="available">Available</button>;
+      break;
+    case !isLoggedIn && adoptionStatus === "Adopted":
+      ownButton = <button className="unavailable">Adopted</button>;
+      break;
+    case !isLoggedIn && adoptionStatus === "Fostered":
+      ownButton = <button className="unavailable">Fostered</button>;
+      break;
+    default:
+      ownButton = <button className="available">Available</button>;
   }
+
   return ownButton;
 }

@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import NavBar from "../../NavBar/NavBar";
 import { PetContext } from "../PetContext";
 import MyOwnedPets from "./MyOwnedPets";
@@ -10,9 +9,12 @@ export default function MyPets() {
   document.title = "My Pets";
 
   const { getMyPets, myPets, ownedOrSaved } = useContext(PetContext);
+  const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
 
   useEffect(() => {
-    getMyPets();
+    if (isLoggedIn) {
+      getMyPets();
+    }
   }, []);
 
   if (!myPets) return <NavBar />;

@@ -10,6 +10,7 @@ export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
   const { getPetById, currentPet, myPets } = useContext(PetContext);
+  const user = JSON.parse(localStorage.getItem("userId"));
 
   useEffect(() => {
     getPetById(currentId);

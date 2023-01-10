@@ -9,7 +9,7 @@ export default function MySavedPets() {
   if (myPets.savedPets.length > 0) {
     return (
       <>
-        <h3>Saved pets:</h3>
+        <h3>Pets I follow:</h3>
         <div className="petList">
           {myPets.savedPets.map(({ name, _id, picture }) => {
             return (
