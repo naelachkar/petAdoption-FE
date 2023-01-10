@@ -9,9 +9,10 @@ export default function PetContextWrapper({ children }) {
   async function testGetPets() {
     const token = JSON.parse(localStorage.getItem("token"));
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
+    const userId = JSON.parse(localStorage.getItem("userId"));
     try {
       const pets = await axios.get(
-        `${process.env.REACT_APP_URL}/pets/user/:id`,
+        `${process.env.REACT_APP_URL}/pets/user/:${userId}`,
         headersConfig
       );
       console.log(pets.data.pets);
