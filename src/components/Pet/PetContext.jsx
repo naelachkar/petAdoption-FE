@@ -21,7 +21,7 @@ export default function PetContextWrapper({ children }) {
     const userId = JSON.parse(localStorage.getItem("userId"));
     try {
       const pets = await axios.get(
-        `${process.env.REACT_APP_URL}/pets/user/:${userId}`,
+        `${process.env.REACT_APP_URL}/pets/user/${userId}`,
         headersConfig
       );
       setMyPets(pets.data.pets);
@@ -33,7 +33,7 @@ export default function PetContextWrapper({ children }) {
   async function getPetById(id) {
     try {
       const petById = await axios.get(
-        `${process.env.REACT_APP_URL}/pets/:${id}`
+        `${process.env.REACT_APP_URL}/pets/${id}`
       );
       setCurrentPet(petById.data);
     } catch (err) {
@@ -46,7 +46,7 @@ export default function PetContextWrapper({ children }) {
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
     try {
       const saved = await axios.post(
-        `${process.env.REACT_APP_URL}/pets/:${id}/save`,
+        `${process.env.REACT_APP_URL}/pets/${id}/save`,
         null,
         headersConfig
       );
@@ -62,7 +62,7 @@ export default function PetContextWrapper({ children }) {
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
     try {
       const saved = await axios.delete(
-        `${process.env.REACT_APP_URL}/pets/:${id}/save`,
+        `${process.env.REACT_APP_URL}/pets/${id}/save`,
         headersConfig
       );
       await getMyPets();
@@ -77,7 +77,7 @@ export default function PetContextWrapper({ children }) {
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
     try {
       const adopted = await axios.post(
-        `${process.env.REACT_APP_URL}/pets/:${id}/adopt`,
+        `${process.env.REACT_APP_URL}/pets/${id}/adopt`,
         { adoptOrFoster },
         headersConfig
       );
@@ -93,7 +93,7 @@ export default function PetContextWrapper({ children }) {
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
     try {
       const returned = await axios.post(
-        `${process.env.REACT_APP_URL}/pets/:${id}/return`,
+        `${process.env.REACT_APP_URL}/pets/${id}/return`,
         { adoptOrFoster },
         headersConfig
       );

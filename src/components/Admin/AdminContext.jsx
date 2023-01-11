@@ -26,7 +26,7 @@ export default function AdminContextWrapper({ children }) {
     const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}/user/:${id}/full`,
+        `${process.env.REACT_APP_URL}/user/${id}/full`,
         headersConfig
       );
       setSelectedUser(res.data);

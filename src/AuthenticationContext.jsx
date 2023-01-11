@@ -117,7 +117,7 @@ export default function AuthenticationContextWrapper({ children }) {
     const userId = JSON.parse(localStorage.getItem("userId"));
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_URL}/user/:${userId}`,
+        `${process.env.REACT_APP_URL}/user/${userId}`,
         headersConfig
       );
       setCurrentUser(res.data);
@@ -151,7 +151,7 @@ export default function AuthenticationContextWrapper({ children }) {
     }
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_URL}/user/:${userId}`,
+        `${process.env.REACT_APP_URL}/user/${userId}`,
         updatedInfo,
         headersConfig
       );
