@@ -42,6 +42,7 @@
 h1 {
   font-family: "Lobster Two", cursive;
   font-size: 4rem;
+  margin-bottom: 1rem;
 }
 
 button {
@@ -89,3 +90,38 @@ ul {
   text-align: start;
 }
 
+.petList {
+  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0;
+}
+
+.petCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  grid-column: span 1;
+  flex: 0 0 calc(1 / 3 * 100% - 1rem);
+}
+
+.petCard img {
+  max-height: 200px;
+}
+
+.petText {
+  padding: 0.5rem;
+  text-align: start;
+}
+
+.petNameAndType {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.25rem;
+}
+
+.petName {
+  flex-grow: 1;
+  font-family: "Lobster Two";
+  font-size: 1.25rem;
+}

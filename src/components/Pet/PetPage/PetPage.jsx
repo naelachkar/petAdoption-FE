@@ -52,34 +52,12 @@ export default function Pet() {
         {hypoallergenic ? <li>Hypoallergenic</li> : null}
       </ul>
 
-      <h4>Biography</h4>
-      <article>{bio}</article>
-
-      {/* <div className="infoContainer">
-        <div className="infoRow">
-          <div className="right">Colour</div>
-          <div className="left">{color}</div>
-        </div>
-        <div className="infoRow">
-          <div className="right">Height</div>
-          <div className="left">{height}</div>
-        </div>
-        <div className="infoRow">
-          <div className="right">Weight</div>
-          <div className="left">{weight}</div>
-        </div>
-        <div className="infoRow">
-          <div className="right">Hypoallergenic</div>
-          <div className="left">{hypoallergenic ? "Yes" : "No"}</div>
-        </div>
-      </div> */}
-
-      {/* <ul>
-        <li>Colour: {color}</li>
-        <li>Height: {height}cm</li>
-        <li>Weight: {weight}kg</li>
-        <li>Hypoallergenic: {hypoallergenic ? "Yes" : "No"}</li>
-      </ul> */}
+      {bio && (
+        <>
+          <h4>Biography</h4>
+          <article>{bio}</article>
+        </>
+      )}
     </>
   );
 }
