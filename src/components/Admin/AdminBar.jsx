@@ -6,8 +6,8 @@ export default function AdminBar() {
 
   return (
     <div className="search-bar">
-      <button onClick={() => togglingAdmin(true)}>User list</button>
       <button onClick={() => togglingAdmin(false)}>Pet list</button>
+      <button onClick={() => togglingAdmin(true)}>User list</button>
     </div>
   );
 }
