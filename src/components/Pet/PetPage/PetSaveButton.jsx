@@ -3,7 +3,7 @@ import { PetContext } from "../PetContext";
 
 export default function PetOwnButton() {
   const currentId = location.search.slice(4);
-  const { savePet, myPets } = useContext(PetContext);
+  const { savePet, myPets, deleteSavedPet } = useContext(PetContext);
   const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
 
   if (!myPets) return;
@@ -15,7 +15,7 @@ export default function PetOwnButton() {
       saveButton = (
         <>
           <button className="unavailable">Followed by you</button>
-          <button>Unfollow</button>
+          <button onClick={() => deleteSavedPet(currentId)}>Unfollow</button>
         </>
       );
     } else {

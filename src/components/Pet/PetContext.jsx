@@ -50,7 +50,23 @@ export default function PetContextWrapper({ children }) {
         null,
         headersConfig
       );
-      alert("Pet saved successfully");
+      await getMyPets();
+      alert("Pet followed successfully");
+    } catch (err) {
+      alert(err.response.data);
+    }
+  }
+
+  async function deleteSavedPet(id) {
+    const token = JSON.parse(localStorage.getItem("token"));
+    const headersConfig = { headers: { Authorization: `Bearer ${token}` } };
+    try {
+      const saved = await axios.delete(
+        `${process.env.REACT_APP_URL}/pets/:${id}/save`,
+        headersConfig
+      );
+      await getMyPets();
+      alert("Pet unfollowed successfully");
     } catch (err) {
       alert(err.response.data);
     }
@@ -100,6 +116,7 @@ export default function PetContextWrapper({ children }) {
         toggleMyPets,
         ownedOrSaved,
         returnPet,
+        deleteSavedPet,
       }}>
       {children}
     </PetContext.Provider>
