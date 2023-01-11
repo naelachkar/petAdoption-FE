@@ -125,3 +125,8 @@ ul {
   font-family: "Lobster Two";
   font-size: 1.25rem;
 }
+
+textarea {
+  margin-bottom: 1rem;
+  /* max-width: 30rem; */
+}
