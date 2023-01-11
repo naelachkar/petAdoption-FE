@@ -11,14 +11,32 @@ export default function SearchResults() {
   return (
     searchedPets.length !== 0 && (
       <div className="petList">
-        {searchedPets.map(({ type, name, breed, _id, picture }) => {
+        {searchedPets.map(({ name, adoptionStatus, _id, picture, type }) => {
           return (
-            <div
-              key={_id}
-              className="petCard"
-              onClick={() => navigate(`/pet?id=${_id}`)}>
+            <div key={_id} className="petCard">
               {picture && <img src={picture}></img>}
-              <span className="petText">{name}</span>
+              <div
+                className="petText"
+                style={{
+                  backgroundColor:
+                    adoptionStatus === "Available"
+                      ? "#def28c"
+                      : adoptionStatus === "Fostered"
+                      ? "#FDB979"
+                      : "#fc9797",
+                }}>
+                <div className="petNameAndType">
+                  <span className="petName">
+                    <b>{name}</b>
+                  </span>
+                  {type === "Dog" && "🐶"}
+                  {type === "Cat" && "🐱"}
+                </div>
+                <span>{adoptionStatus}</span>
+              </div>
+              <button onClick={() => navigate(`/pet?id=${_id}`)}>
+                See more
+              </button>
             </div>
           );
         })}

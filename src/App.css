@@ -40,7 +40,7 @@
 }
 
 h1 {
-  font-family: 'Lobster Two', cursive;
+  font-family: "Lobster Two", cursive;
   font-size: 4rem;
 }
 
@@ -63,17 +63,19 @@ button:disabled {
   cursor: not-allowed;
 }
 
-button:disabled:hover{
+button:disabled:hover {
   background-color: #000;
 }
 
-input, select {
+input,
+select {
   margin-bottom: 1rem;
   border: 1px solid black;
   padding: 0.875rem 0.75rem;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   outline: none;
   border-color: #0879bf;
 }
@@ -86,3 +88,4 @@ label {
 ul {
   text-align: start;
 }
+

@@ -16,12 +16,14 @@ export default function MyOwnedPets() {
         <div className="petList">
           {myPets.adoptedPets.map(({ name, _id, picture }) => {
             return (
-              <div
-                key={_id}
-                className="petCard"
-                onClick={() => navigate(`/pet?id=${_id}`)}>
+              <div key={_id} className="petCard">
                 {picture && <img src={picture}></img>}
-                <span className="petText">{name}</span>
+                <span className="petText">
+                  <b>{name}</b>
+                </span>
+                <button onClick={() => navigate(`/pet?id=${_id}`)}>
+                  See more
+                </button>
               </div>
             );
           })}
@@ -37,12 +39,14 @@ export default function MyOwnedPets() {
         <div className="petList">
           {myPets.fosteredPets.map(({ name, _id, picture }) => {
             return (
-              <div
-                key={_id}
-                className="petCard"
-                onClick={() => navigate(`/pet?id=${_id}`)}>
+              <div key={_id} className="petCard">
                 {picture && <img src={picture}></img>}
-                <span className="petText">{name}</span>
+                <span className="petText">
+                  <b>{name}</b>
+                </span>
+                <button onClick={() => navigate(`/pet?id=${_id}`)}>
+                  See more
+                </button>
               </div>
             );
           })}
