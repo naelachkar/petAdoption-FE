@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { PetContext } from "../Pet/PetContext";
 
 export default function EditPet({ currentPet, adoptOrEdit }) {
-  const { handleChange, inputs, addPet, editPet } = useContext(PetContext);
+  const { handleChange, handleImageChange, inputs, addPet, editPet } =
+    useContext(PetContext);
 
   return (
-    <form onSubmit={adoptOrEdit ? addPet : editPet}>
+    <form onSubmit={adoptOrEdit ? addPet : (e) => editPet(e, currentPet._id)}>
       <label>Name</label>
       <input
         type="text"
@@ -28,7 +29,7 @@ export default function EditPet({ currentPet, adoptOrEdit }) {
         type="file"
         name="picture"
         required={adoptOrEdit}
-        onChange={handleChange}
+        onChange={handleImageChange}
       />
       <label>Breed</label>
       <input

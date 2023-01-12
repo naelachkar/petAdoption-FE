@@ -105,7 +105,7 @@ export default function PetContextWrapper({ children }) {
   }
 
   // Edit pets (admins only)
-  const [inputs, setInputs] = useState([]);
+  const [inputs, setInputs] = useState({});
 
   function handleChange(e) {
     let value = e.target.value;
@@ -115,14 +115,55 @@ export default function PetContextWrapper({ children }) {
     setInputs({ ...inputs, [e.target.name]: value });
   }
 
+  function handleImageChange(e) {
+    setInputs({ ...inputs, [e.target.name]: e.target.files[0] });
+  }
+
   async function addPet(e) {
     e.preventDefault();
+    let myInputs = { ...inputs };
+    const formData = new FormData();
+    for (let key in myInputs) {
+      formData.append(key, myInputs[key]);
+    }
     console.log("Add");
   }
 
-  async function editPet(e) {
+  async function editPet(e, petId) {
     e.preventDefault();
-    console.log("edit");
+
+    let myInputs = { ...inputs };
+    for (const input in myInputs) {
+      if (
+        myInputs[input] === "" ||
+        myInputs[input] === undefined ||
+        myInputs[input] === currentPet[input]
+      ) {
+        delete myInputs[input];
+      }
+    }
+
+    const formData = new FormData();
+    for (let key in myInputs) {
+      formData.append(key, myInputs[key]);
+    }
+
+    const token = JSON.parse(localStorage.getItem("token"));
+    const headersConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    try {
+      const edited = await axios.put(
+        `${process.env.REACT_APP_URL}/pets/${petId}`,
+        formData,
+        headersConfig
+      );
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -139,6 +180,7 @@ export default function PetContextWrapper({ children }) {
         returnPet,
         deleteSavedPet,
         handleChange,
+        handleImageChange,
         inputs,
         addPet,
         editPet,
