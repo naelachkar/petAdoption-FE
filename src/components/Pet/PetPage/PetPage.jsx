@@ -43,7 +43,7 @@ export default function Pet() {
       <div>
         <PetOwnButton />
         <PetSaveButton />
-        <EditPetButton />
+        <EditPetButton currentPet={currentPet}/>
       </div>
 
       <h4>Information</h4>

@@ -104,6 +104,17 @@ export default function PetContextWrapper({ children }) {
     }
   }
 
+  // Edit pets (admins only)
+  const [inputs, setInputs] = useState([]);
+
+  function handleChange(e) {
+    let value = e.target.value;
+    if (e.target.name === "height" || e.target.name === "weight") {
+      value = parseInt(e.target.value);
+    }
+    setInputs({ ...inputs, [e.target.name]: value });
+  }
+
   return (
     <PetContext.Provider
       value={{
@@ -117,6 +128,8 @@ export default function PetContextWrapper({ children }) {
         ownedOrSaved,
         returnPet,
         deleteSavedPet,
+        handleChange,
+        inputs,
       }}>
       {children}
     </PetContext.Provider>

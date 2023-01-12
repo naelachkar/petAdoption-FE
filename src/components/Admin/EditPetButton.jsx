@@ -1,6 +1,7 @@
 import { useState } from "react";
+import EditPet from "./EditPet";
 
-export default function EditPetButton() {
+export default function EditPetButton({ currentPet }) {
   const [toggleModal, setToggleModal] = useState(false);
 
   if (localStorage.getItem("admin")) {
@@ -14,7 +15,8 @@ export default function EditPetButton() {
               <div className="close end" onClick={() => setToggleModal(false)}>
                 ✖
               </div>
-              <div>Text</div>
+              <h2>Edit pet</h2>
+              <EditPet currentPet={currentPet} adoptOrEdit={false} />
               <div className="close" onClick={() => setToggleModal(false)}>
                 Close
               </div>
