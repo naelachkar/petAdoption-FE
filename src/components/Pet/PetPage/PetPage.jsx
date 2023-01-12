@@ -5,12 +5,13 @@ import NavBar from "../../NavBar/NavBar";
 import { PetContext } from "../PetContext";
 import PetOwnButton from "./PetOwnButton";
 import PetSaveButton from "./PetSaveButton";
+import EditPetButton from "../../Admin/EditPetButton";
 
 export default function Pet() {
   const location = useLocation();
   const currentId = location.search.slice(4);
   const { getPetById, currentPet, myPets } = useContext(PetContext);
-  const user = JSON.parse(localStorage.getItem("userId"));
+  const admin = JSON.parse(localStorage.getItem("admin"));
 
   useEffect(() => {
     getPetById(currentId);
@@ -42,6 +43,7 @@ export default function Pet() {
       <div>
         <PetOwnButton />
         <PetSaveButton />
+        <EditPetButton />
       </div>
 
       <h4>Information</h4>
