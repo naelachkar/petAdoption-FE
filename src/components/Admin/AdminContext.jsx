@@ -67,8 +67,6 @@ export default function AdminContextWrapper({ children }) {
         allPets,
         toggleAdmin,
         togglingAdmin,
-        handleChange,
-        inputs,
       }}>
       {children}
     </AdminContext.Provider>

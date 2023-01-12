@@ -115,6 +115,16 @@ export default function PetContextWrapper({ children }) {
     setInputs({ ...inputs, [e.target.name]: value });
   }
 
+  async function addPet(e) {
+    e.preventDefault();
+    console.log("Add");
+  }
+
+  async function editPet(e) {
+    e.preventDefault();
+    console.log("edit");
+  }
+
   return (
     <PetContext.Provider
       value={{
@@ -130,6 +140,8 @@ export default function PetContextWrapper({ children }) {
         deleteSavedPet,
         handleChange,
         inputs,
+        addPet,
+        editPet,
       }}>
       {children}
     </PetContext.Provider>

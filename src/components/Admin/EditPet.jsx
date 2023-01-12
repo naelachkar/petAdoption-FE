@@ -2,15 +2,10 @@ import { useContext } from "react";
 import { PetContext } from "../Pet/PetContext";
 
 export default function EditPet({ currentPet, adoptOrEdit }) {
-  const { handleChange, inputs } = useContext(PetContext);
-
-  function testSubmit(e) {
-    e.preventDefault();
-    console.log(inputs);
-  }
+  const { handleChange, inputs, addPet, editPet } = useContext(PetContext);
 
   return (
-    <form onSubmit={testSubmit}>
+    <form onSubmit={adoptOrEdit ? addPet : editPet}>
       <label>Name</label>
       <input
         type="text"
