@@ -15,7 +15,7 @@ export default function Pet() {
 
   useEffect(() => {
     getPetById(currentId);
-  }, [myPets]);
+  }, [myPets, currentPet]);
 
   if (!currentPet) return <NavBar />;
 
@@ -38,12 +38,12 @@ export default function Pet() {
       <NavBar />
       <h1>{name}</h1>
       <h2>{type}</h2>
-      {picture && <img src={picture} />}
+      {picture && <img className="petImage" src={picture} />}
       <h3>{breed}</h3>
       <div>
         <PetOwnButton />
         <PetSaveButton />
-        <EditPetButton currentPet={currentPet}/>
+        <EditPetButton currentPet={currentPet} />
       </div>
 
       <h4>Information</h4>

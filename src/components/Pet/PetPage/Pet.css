@@ -36,16 +36,10 @@
   flex-grow: 1;
   text-align: start;
 }
-/* 
-.petName {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  position: absolute; 
-  top: 45px; 
-  left: 0;
-  font-size: 15vw;
-  width: 100%; 
-  text-align: left;
-  padding-left: 2rem; 
-} */
 
+.petImage {
+  max-height: 500px;
+  max-width: 500px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}

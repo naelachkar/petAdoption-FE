@@ -1,12 +1,22 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { PetContext } from "../Pet/PetContext";
 
 export default function EditPet({ currentPet, adoptOrEdit }) {
-  const { handleChange, handleImageChange, inputs, addPet, editPet } =
+  const navigate = useNavigate();
+  const { handleChange, handleImageChange, addPet, editPet } =
     useContext(PetContext);
 
   return (
-    <form onSubmit={adoptOrEdit ? addPet : (e) => editPet(e, currentPet._id)}>
+    <form
+      onSubmit={
+        adoptOrEdit
+          ? async (e) => {
+              const newPet = await addPet(e);
+              navigate(`/pet?id=${newPet.data._id}`);
+            }
+          : (e) => editPet(e, currentPet._id)
+      }>
       <label>Name</label>
       <input
         type="text"

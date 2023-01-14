@@ -1,9 +1,11 @@
 import axios from "axios";
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const PetContext = createContext();
 
 export default function PetContextWrapper({ children }) {
+  const navigate = useNavigate;
   const [currentPet, setCurrentPet] = useState();
   const [myPets, setMyPets] = useState();
   const [ownedOrSaved, setOwnedOrSaved] = useState(
@@ -106,6 +108,7 @@ export default function PetContextWrapper({ children }) {
 
   // Edit pets (admins only)
   const [inputs, setInputs] = useState({});
+  const [toggleEditPet, setToggleEditPet] = useState(false);
 
   function handleChange(e) {
     let value = e.target.value;
@@ -122,11 +125,31 @@ export default function PetContextWrapper({ children }) {
   async function addPet(e) {
     e.preventDefault();
     let myInputs = { ...inputs };
+
     const formData = new FormData();
     for (let key in myInputs) {
       formData.append(key, myInputs[key]);
     }
-    console.log("Add");
+
+    const token = JSON.parse(localStorage.getItem("token"));
+    const headersConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    };
+
+    try {
+      const newPet = await axios.post(
+        `${process.env.REACT_APP_URL}/pets`,
+        formData,
+        headersConfig
+      );
+      setToggleEditPet(false);
+      return newPet;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function editPet(e, petId) {
@@ -161,6 +184,8 @@ export default function PetContextWrapper({ children }) {
         formData,
         headersConfig
       );
+      setCurrentPet(edited);
+      setToggleEditPet(false);
     } catch (err) {
       console.log(err);
     }
@@ -182,6 +207,8 @@ export default function PetContextWrapper({ children }) {
         handleChange,
         handleImageChange,
         inputs,
+        toggleEditPet,
+        setToggleEditPet,
         addPet,
         editPet,
       }}>
