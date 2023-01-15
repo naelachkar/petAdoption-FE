@@ -49,17 +49,13 @@ export default function SearchContextWrapper({ children }) {
 
   function toggleSearchType(bool) {
     setAdvancedSearch(bool);
-    localStorage.setItem("search", JSON.stringify(bool))
+    localStorage.setItem("search", JSON.stringify(bool));
     setInputs({});
   }
 
   function handleChange(e) {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   }
-
-  // useEffect(() => {
-  //   localStorage.setItem("search", JSON.stringify(advancedSearch));
-  // }, [advancedSearch]);
 
   return (
     <SearchContext.Provider
