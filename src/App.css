@@ -112,6 +112,28 @@ ul {
   object-position: 50% 50%;
 }
 
+@media screen and (max-width: 650px) {
+  .petList {
+    grid-template-columns: repeat(2, 1fr);
+    width: 90vw;
+  }
+
+  .petCard img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .petList {
+    grid-template-columns: repeat(1, 1fr);
+    width: 90vw;
+  }
+
+  .petCard img {
+    width: auto;
+  }
+}
+
 .petText {
   padding: 0.5rem;
   text-align: start;

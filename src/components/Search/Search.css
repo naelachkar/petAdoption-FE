@@ -10,8 +10,16 @@
 fieldset {
   padding: 1em;
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 2rem;
+  max-width: 95vw;
+}
+
+@media screen and (max-width: 475px) {
+  fieldset {
+    flex-direction: column;
+  }
 }
 
 fieldset label,
