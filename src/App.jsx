@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Welcome from "./components/Welcome/Welcome";
 import Home from "./components/Home/Home";
 import Search from "./components/Search/Search";
 import AuthenticationContextWrapper from "./AuthenticationContext";
@@ -22,17 +21,9 @@ export default function App() {
         <SearchContextWrapper>
           <PetContextWrapper>
             <Routes>
-              <Route path="/" element={<Welcome />} />
+              <Route path="/" element={<Home />} />
               <Route path="/search" element={<Search />} />
               <Route path="/pet" element={<Pet />} />
-              <Route
-                path="/home"
-                element={
-                  <PrivateRoute>
-                    <Home />
-                  </PrivateRoute>
-                }
-              />
               <Route
                 path="/myPets"
                 element={

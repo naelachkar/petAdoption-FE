@@ -95,7 +95,7 @@ export default function AuthenticationContextWrapper({ children }) {
       setEmail("");
       setIsModalOpen(false);
       resetInputs();
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       alert(err.response.data);
     }
@@ -156,7 +156,7 @@ export default function AuthenticationContextWrapper({ children }) {
         headersConfig
       );
       setCurrentUser(res.data);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       if (err.response.data.ok === false) {
         setArePasswordsDifferent(true);

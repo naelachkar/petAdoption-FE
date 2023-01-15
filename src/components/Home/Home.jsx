@@ -1,27 +1,12 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthenticationContext } from "../../AuthenticationContext";
 import NavBar from "../NavBar/NavBar";
+import "./Home.css";
+import HomeLoggedIn from "./HomeLoggedIn";
+import HomeLoggedOut from "./HomeLoggedOut";
 
 export default function Home() {
-  document.title = "Home";
+  const { token } = useContext(AuthenticationContext);
 
-  const { getCurrentUserInfo, currentUser } = useContext(AuthenticationContext);
-
-  useEffect(() => {
-    if (!currentUser) {
-      getCurrentUserInfo();
-    }
-  }, []);
-
-  return (
-    currentUser && (
-      <>
-        <NavBar />
-        <h1>
-          Hello {currentUser.firstName && `${currentUser.firstName}`}{" "}
-          {currentUser.lastName && `${currentUser.lastName}`}{" "}
-        </h1>
-      </>
-    )
-  );
+  return <>{token ? <HomeLoggedIn /> : <HomeLoggedOut />}</>;
 }

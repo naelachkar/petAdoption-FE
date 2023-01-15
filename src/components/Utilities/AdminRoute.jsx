@@ -5,7 +5,7 @@ export default function AdminRoute({ children }) {
     if (!JSON.parse(localStorage.getItem("token"))) {
       return <Navigate to="/" replace />;
     }
-    return <Navigate to="/home" replace />;
+    return <Navigate to="/" replace />;
   }
   return children;
 }

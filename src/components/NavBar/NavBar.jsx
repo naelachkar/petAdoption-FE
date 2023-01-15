@@ -14,7 +14,7 @@ export default function NavBar() {
       {token ? (
         <div className="navContainer">
           <nav>
-            <button onClick={() => navigate("/home")}>Home</button>
+            <button onClick={() => navigate("/")}>Home</button>
             <button onClick={() => navigate("/search")}>Search</button>
             <button onClick={() => navigate("/myPets")}>My Pets</button>
             <button onClick={() => navigate("/profilePage")}>

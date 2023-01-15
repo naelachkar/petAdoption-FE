@@ -1,7 +1,6 @@
 import NavBar from "../NavBar/NavBar";
-import "./Welcome.css";
 
-export default function Welcome() {
+export default function HomeLoggedOut() {
   document.title = "Pet Adoption";
 
   return (
