@@ -43,6 +43,7 @@ h1 {
   font-family: "Lobster Two", cursive;
   font-size: 4rem;
   margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 
 button {
@@ -153,5 +154,5 @@ ul {
 
 textarea {
   margin-bottom: 1rem;
-  /* max-width: 30rem; */
+  max-width: 515px;
 }
