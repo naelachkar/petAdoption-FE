@@ -1,4 +1,6 @@
 .navContainer {
-    width: 100vw;
-    background-color: black;
+  width: 100vw;
+  background-color: black;
+  position: sticky;
+  top: 0;
 }
