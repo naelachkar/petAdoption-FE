@@ -6,13 +6,13 @@ export default function HomeLoggedIn() {
   document.title = "Home";
   const { getCurrentUserInfo, currentUser } = useContext(AuthenticationContext);
 
-  if (!currentUser) return <NavBar />
-
   useEffect(() => {
     if (!currentUser) {
       getCurrentUserInfo();
     }
   }, []);
+
+  if (!currentUser) return <NavBar />;
 
   return (
     currentUser && (

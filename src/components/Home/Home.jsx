@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { AuthenticationContext } from "../../AuthenticationContext";
-import NavBar from "../NavBar/NavBar";
 import "./Home.css";
 import HomeLoggedIn from "./HomeLoggedIn";
 import HomeLoggedOut from "./HomeLoggedOut";
