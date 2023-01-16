@@ -1,7 +1,13 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthenticationContext } from "../../AuthenticationContext";
 import NavBar from "../NavBar/NavBar";
 
 export default function HomeLoggedOut() {
   document.title = "Pet Adoption";
+
+  const { toggleModal } = useContext(AuthenticationContext);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -18,6 +24,15 @@ export default function HomeLoggedOut() {
         look around and see which cute critter catches your eye. We can’t wait
         to help you find your new best friend.
       </article>
+      <div>
+        <button onClick={() => navigate("/search")}>Search</button>
+        <button id="Log in" onClick={toggleModal}>
+          Log in
+        </button>
+        <button id="Sign up" onClick={toggleModal}>
+          Sign up
+        </button>
+      </div>
     </>
   );
 }
