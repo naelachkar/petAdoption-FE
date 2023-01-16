@@ -3,4 +3,14 @@
   background-color: black;
   position: sticky;
   top: 0;
+  border-bottom: 0.375rem solid #0879bf;
+}
+
+.navContainer button {
+  font-size: 1.125rem;
+  box-shadow: 0 0.375rem #0879bf;;
+}
+
+.navContainer button:hover {
+  box-shadow: 0 0.375rem black;
 }

@@ -2,15 +2,17 @@
   padding: 0.75rem;
   border: 0;
   font-size: 1rem;
-  background-color: #000;
+  background-color: grey;
   color: white;
-  opacity: 50%;
+  /* opacity: 50%; */
+  box-shadow: 0.375rem 0.375rem black;
 }
 
 .unavailable:hover {
-  background-color: #000;
-  opacity: 50%;
+  background-color: grey;
+  /* opacity: 50%; */
   cursor: default;
+  box-shadow: 0.375rem 0.375rem black;
 }
 
 .available:hover {
