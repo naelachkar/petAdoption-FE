@@ -29,7 +29,7 @@ export default function ProfileSettings() {
     <>
       <NavBar />
       <h1>Profile Settings</h1>
-      <form onSubmit={updateUserInfo}>
+      <form id="profileForm" onSubmit={updateUserInfo}>
         <label htmlFor="firstName">First name</label>
         <input
           type="name"

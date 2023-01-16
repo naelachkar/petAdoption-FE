@@ -22,12 +22,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
 .modal a {
   color: #0879bf;
   cursor: pointer;

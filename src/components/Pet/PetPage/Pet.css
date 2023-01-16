@@ -40,8 +40,7 @@
 }
 
 .petImage {
-  max-height: 500px;
-  max-width: 500px;
+  width: min(500px, 85dvw);
   object-fit: cover;
   object-position: 50% 50%;
 }

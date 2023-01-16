@@ -8,8 +8,7 @@
 }
 
 article {
-    min-width: 33vw;
-    max-width: 50vw;
+    width: min(486px, 85dvw);
     text-align: justify;
     margin-bottom: 3rem;
 }
