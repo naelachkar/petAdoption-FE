@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { PetContext } from "../PetContext";
 
 export default function PetOwnButton() {
-  const currentId = windows.location.search.slice(4);
+  const currentId = window.location.search.slice(4);
   const { savePet, myPets, deleteSavedPet } = useContext(PetContext);
   const isLoggedIn = JSON.parse(localStorage.getItem("userId"));
 

@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { PetContext } from "../PetContext";
 
 export default function PetOwnButton() {
-  const currentId = windows.location.search.slice(4);
+  const currentId = window.location.search.slice(4);
   const { currentPet, adoptOrFosterPet, getMyPets, myPets, returnPet } =
     useContext(PetContext);
   const { adoptionStatus } = currentPet;

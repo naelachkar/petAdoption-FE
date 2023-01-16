@@ -9,7 +9,7 @@ import EditPetButton from "../../Admin/EditPetButton";
 
 export default function Pet() {
   const location = useLocation();
-  const currentId = windows.location.search.slice(4);
+  const currentId = window.location.search.slice(4);
   const { getPetById, currentPet, myPets } = useContext(PetContext);
   const admin = JSON.parse(localStorage.getItem("admin"));
 
