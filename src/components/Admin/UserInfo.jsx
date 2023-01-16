@@ -4,7 +4,7 @@ import PetRenderer from "../Pet/MyPets/PetRenderer";
 import { AdminContext } from "./AdminContext";
 
 export default function UserInfo() {
-  const id = location.search.slice(4);
+  const id = windows.location.search.slice(4);
 
   const { getUserByIdFull, selectedUser } = useContext(AdminContext);
 

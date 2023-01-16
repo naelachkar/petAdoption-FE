@@ -21,7 +21,7 @@ export default function AllPets() {
           {allPets.map(({ name, adoptionStatus, _id, picture, type }) => {
             return (
               <div key={_id} className="petCard">
-                {picture && <img src={picture}></img>}
+                {picture && <img src={picture} alt="image of a pet"></img>}
                 <div
                   className="petText"
                   style={{

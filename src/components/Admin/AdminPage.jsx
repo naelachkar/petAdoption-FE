@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import NavBar from "../NavBar/NavBar";
 import AdminBar from "./AdminBar";
 import { AdminContext } from "./AdminContext";

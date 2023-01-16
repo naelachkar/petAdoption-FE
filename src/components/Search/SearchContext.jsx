@@ -11,7 +11,7 @@ export default function SearchContextWrapper({ children }) {
   const [searchedPets, setSearchPets] = useState([]);
 
   function inputsToMongoParams() {
-    const myInputs = { ...inputs };
+    let myInputs = { ...inputs };
     for (const input in myInputs) {
       if (myInputs[input] === "" || myInputs[input] === undefined) {
         delete myInputs[input];
@@ -21,7 +21,7 @@ export default function SearchContextWrapper({ children }) {
       myInputs.name = { $regex: `${myInputs.name}`, $options: "i" };
     }
     if (myInputs === undefined) {
-      myInputs === {};
+      myInputs = {};
     }
     return myInputs;
   }

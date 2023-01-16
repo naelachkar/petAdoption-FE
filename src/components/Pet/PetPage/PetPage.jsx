@@ -9,7 +9,7 @@ import EditPetButton from "../../Admin/EditPetButton";
 
 export default function Pet() {
   const location = useLocation();
-  const currentId = location.search.slice(4);
+  const currentId = windows.location.search.slice(4);
   const { getPetById, currentPet, myPets } = useContext(PetContext);
   const admin = JSON.parse(localStorage.getItem("admin"));
 
@@ -38,7 +38,9 @@ export default function Pet() {
       <NavBar />
       <h1>{name}</h1>
       <h2>{type}</h2>
-      {picture && <img className="petImage" src={picture} />}
+      {picture && (
+        <img className="petImage" src={picture} alt="image of a pet" />
+      )}
       <h3>{breed}</h3>
       <div>
         <PetOwnButton />

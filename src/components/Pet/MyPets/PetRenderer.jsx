@@ -4,9 +4,8 @@ export default function PetRenderer({ _id, picture, name, type }) {
   const navigate = useNavigate();
 
   return (
-    // <div key={_id} name={_id} className="petCard">
     <>
-      {picture && <img src={picture}></img>}
+      {picture && <img src={picture} alt="image of a pet"></img>}
       <div className="petText">
         <div className="petNameAndType">
           <span className="petName">
@@ -18,6 +17,5 @@ export default function PetRenderer({ _id, picture, name, type }) {
       </div>
       <button onClick={() => navigate(`/pet?id=${_id}`)}>See more</button>
     </>
-    // </div>
   );
 }

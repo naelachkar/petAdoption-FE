@@ -1,11 +1,9 @@
 import axios from "axios";
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const PetContext = createContext();
 
 export default function PetContextWrapper({ children }) {
-  const navigate = useNavigate;
   const [currentPet, setCurrentPet] = useState();
   const [myPets, setMyPets] = useState();
   const [ownedOrSaved, setOwnedOrSaved] = useState(
