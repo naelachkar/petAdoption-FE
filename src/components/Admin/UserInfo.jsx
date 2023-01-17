@@ -14,62 +14,67 @@ export default function UserInfo() {
 
   if (!selectedUser) return <NavBar />;
 
-  document.title = `${selectedUser.firstName} ${selectedUser.lastName}`;
+  const { firstName, lastName, email, phoneNumber, bio, admin, pets } =
+    selectedUser;
+
+  document.title = `${firstName} ${lastName}`;
 
   return (
     <>
       <NavBar />
-      <h1>
-        {selectedUser.firstName} {selectedUser.lastName}
-      </h1>
+      <h1>{`${firstName} ${lastName}`}</h1>
       <ul>
-        <li>Email: {selectedUser.email}</li>
-        <li>Phone number: {selectedUser.phoneNumber}</li>
-        <li>Bio: {selectedUser.bio}</li>
-        <li>Admin: {selectedUser.admin ? "Yes" : "No"}</li>
+        <li>
+          Email: <b>{email}</b>
+        </li>
+        <li>
+          Phone number: <b>{phoneNumber}</b>
+        </li>
+        {bio ? (
+          <li>
+            Bio: <b>{bio}</b>
+          </li>
+        ) : null}
+        <li>Admin: {admin ? <b>Yes</b> : <b>No</b>}</li>
       </ul>
-      {selectedUser.pets.adoptedPets && (
+      {pets.adoptedPets.length > 0 ? (
         <>
-          <h3>Adopted pets</h3>
+          <h3>Adopted pets: {pets.adoptedPets.length}</h3>
           <div className="list">
-            {selectedUser.pets.adoptedPets.map(
-              ({ name, _id, picture, type }) => {
-                return (
-                  <div key={_id} name={_id} className="card">
-                    <PetRenderer
-                      name={name}
-                      _id={_id}
-                      picture={picture}
-                      type={type}
-                    />
-                  </div>
-                );
-              }
-            )}
+            {pets.adoptedPets.map(({ name, _id, picture, type }) => {
+              return (
+                <div key={_id} name={_id} className="card">
+                  <PetRenderer
+                    name={name}
+                    _id={_id}
+                    picture={picture}
+                    type={type}
+                  />
+                </div>
+              );
+            })}
           </div>
         </>
-      )}
-      {selectedUser.pets.fosteredPets && (
+      ) : null}
+      {pets.fosteredPets.length > 0 ? (
         <>
-          <h3>Fostered pets</h3>
+          <h3>Fostered pets: {pets.fosteredPets.length}</h3>
           <div className="list">
-            {selectedUser.pets.fosteredPets.map(
-              ({ name, _id, picture, type }) => {
-                return (
-                  <div key={_id} name={_id} className="card">
-                    <PetRenderer
-                      name={name}
-                      _id={_id}
-                      picture={picture}
-                      type={type}
-                    />
-                  </div>
-                );
-              }
-            )}
+            {pets.fosteredPets.map(({ name, _id, picture, type }) => {
+              return (
+                <div key={_id} name={_id} className="card">
+                  <PetRenderer
+                    name={name}
+                    _id={_id}
+                    picture={picture}
+                    type={type}
+                  />
+                </div>
+              );
+            })}
           </div>
         </>
-      )}
+      ) : null}
     </>
   );
 }

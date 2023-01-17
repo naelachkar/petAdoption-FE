@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./AdminContext";
 
 export default function AllUsers() {
-  const { allUsers, getAllUsers } = useContext(AdminContext);
+  const { allUsers, getAllUsers, setSelectedUser } = useContext(AdminContext);
 
   useEffect(() => {
     getAllUsers();
@@ -30,13 +30,14 @@ export default function AllUsers() {
                   <div>
                     <i>{email}</i>
                   </div>
-                  <div>
-                    Owned pets:{" "}
-                    {pets.adoptedPets?.length + pets.fosteredPets?.length}
-                  </div>
-                  <div>Saved pets: {pets.savedPets?.length}</div>
+                  <div>Adopted pets: {pets.adoptedPets?.length}</div>
+                  <div>Fostered pets: {pets.fosteredPets?.length}</div>
                 </div>
-                <button onClick={() => navigate(`/admin/userInfo?id=${_id}`)}>
+                <button
+                  onClick={() => {
+                    setSelectedUser("");
+                    navigate(`/admin/userInfo?id=${_id}`);
+                  }}>
                   See more
                 </button>
               </div>
