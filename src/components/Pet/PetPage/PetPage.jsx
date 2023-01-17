@@ -15,7 +15,7 @@ export default function Pet() {
 
   useEffect(() => {
     getPetById(currentId);
-  }, [myPets, currentPet]);
+  }, [myPets]);
 
   if (!currentPet) return <NavBar />;
 
