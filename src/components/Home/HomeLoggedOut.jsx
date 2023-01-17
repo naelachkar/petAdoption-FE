@@ -23,6 +23,9 @@ export default function HomeLoggedOut() {
         a new home, but you’re also supporting our mission. So go ahead, take a
         look around and see which cute critter catches your eye. We can’t wait
         to help you find your new best friend.
+        <br />
+        <br />
+        Don't forget to create an account to save, foster, and adopt pets!
       </article>
       <div>
         <button onClick={() => navigate("/search")}>Search</button>
