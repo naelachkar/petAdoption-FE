@@ -3,6 +3,12 @@ body {
   font-family: Ubuntu, Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(
+    45deg,
+    rgba(222, 242, 140, 0.5) 0%,
+    rgba(252, 185, 121, 0.5) 50%,
+    rgba(251, 151, 151, 0.5) 100%
+  );
 }
 
 code {

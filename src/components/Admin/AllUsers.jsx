@@ -17,16 +17,25 @@ export default function AllUsers() {
     <>
       <h3>List of users</h3>
       {allUsers.length !== 0 && (
-        <div className="petList">
-          {allUsers.map(({ firstName, lastName, _id, email }) => {
+        <div className="list">
+          {allUsers.map(({ firstName, lastName, _id, email, pets }) => {
             return (
-              <div key={_id} className="petCard">
-                <span className="petName">
-                  <b>
-                    {firstName} {lastName}
-                  </b>
-                </span>
-                <span>{email}</span>
+              <div key={_id} className="card">
+                <div className="cardText userText">
+                  <div className="name">
+                    <b>
+                      {firstName} {lastName}
+                    </b>
+                  </div>
+                  <div>
+                    <i>{email}</i>
+                  </div>
+                  <div>
+                    Owned pets:{" "}
+                    {pets.adoptedPets?.length + pets.fosteredPets?.length}
+                  </div>
+                  <div>Saved pets: {pets.savedPets?.length}</div>
+                </div>
                 <button onClick={() => navigate(`/admin/userInfo?id=${_id}`)}>
                   See more
                 </button>

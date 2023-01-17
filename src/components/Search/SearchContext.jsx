@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const SearchContext = createContext();
 
@@ -8,7 +8,7 @@ export default function SearchContextWrapper({ children }) {
     JSON.parse(localStorage.getItem("search")) || false
   );
   const [inputs, setInputs] = useState({ type: "", adoptionStatus: "" });
-  const [searchedPets, setSearchPets] = useState([]);
+  const [searchedPets, setSearchedPets] = useState([]);
 
   function inputsToMongoParams() {
     let myInputs = { ...inputs };
@@ -36,16 +36,11 @@ export default function SearchContextWrapper({ children }) {
         `${process.env.REACT_APP_URL}/pets`,
         { params: { query: myInputs } }
       );
-      setSearchPets(retrievedPets.data);
+      setSearchedPets(retrievedPets.data);
     } catch (err) {
       console.error(err);
     }
   }
-
-  //! On first render, doesn't show first search - temporary hack:
-  useEffect(() => {
-    searchPets();
-  }, []);
 
   function toggleSearchType(bool) {
     setAdvancedSearch(bool);

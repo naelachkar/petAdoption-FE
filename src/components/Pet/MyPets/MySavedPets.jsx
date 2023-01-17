@@ -9,10 +9,10 @@ export default function MySavedPets() {
     return (
       <>
         <h3>Pets I follow ✨</h3>
-        <div className="petList">
+        <div className="list">
           {myPets.savedPets.map(({ name, _id, picture, type }) => {
             return (
-              <div key={_id} name={_id} className="petCard">
+              <div key={_id} name={_id} className="card">
                 <PetRenderer
                   name={name}
                   _id={_id}

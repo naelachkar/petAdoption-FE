@@ -12,10 +12,10 @@ export default function MyOwnedPets() {
     adoptedList = (
       <>
         <h3>Pets I've adopted ❤️</h3>
-        <div className="petList">
+        <div className="list">
           {myPets.adoptedPets.map(({ name, _id, picture, type }) => {
             return (
-              <div key={_id} name={_id} className="petCard">
+              <div key={_id} name={_id} className="card">
                 <PetRenderer
                   name={name}
                   _id={_id}
@@ -34,10 +34,10 @@ export default function MyOwnedPets() {
     fosteredList = (
       <>
         <h3>Pets I'm fostering 🏡</h3>
-        <div className="petList">
+        <div className="list">
           {myPets.fosteredPets.map(({ name, _id, picture, type }) => {
             return (
-              <div key={_id} name={_id} className="petCard">
+              <div key={_id} name={_id} className="card">
                 <PetRenderer
                   name={name}
                   _id={_id}

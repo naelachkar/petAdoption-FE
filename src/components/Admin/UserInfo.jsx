@@ -31,11 +31,11 @@ export default function UserInfo() {
       {selectedUser.pets.adoptedPets && (
         <>
           <h3>Adopted pets</h3>
-          <div className="petList">
+          <div className="list">
             {selectedUser.pets.adoptedPets.map(
               ({ name, _id, picture, type }) => {
                 return (
-                  <div key={_id} name={_id} className="petCard">
+                  <div key={_id} name={_id} className="card">
                     <PetRenderer
                       name={name}
                       _id={_id}
@@ -52,11 +52,11 @@ export default function UserInfo() {
       {selectedUser.pets.fosteredPets && (
         <>
           <h3>Fostered pets</h3>
-          <div className="petList">
+          <div className="list">
             {selectedUser.pets.fosteredPets.map(
               ({ name, _id, picture, type }) => {
                 return (
-                  <div key={_id} name={_id} className="petCard">
+                  <div key={_id} name={_id} className="card">
                     <PetRenderer
                       name={name}
                       _id={_id}

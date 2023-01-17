@@ -19,13 +19,13 @@ export default function AllPets() {
     <>
       <h3>List of pets</h3>
       {allPets.length !== 0 && (
-        <div className="petList">
+        <div className="list">
           {allPets.map(({ name, adoptionStatus, _id, picture, type }) => {
             return (
-              <div key={_id} className="petCard">
+              <div key={_id} className="card">
                 {picture && <img src={picture} alt="image of a pet"></img>}
                 <div
-                  className="petText"
+                  className="cardText"
                   style={{
                     backgroundColor:
                       adoptionStatus === "Available"
@@ -34,8 +34,8 @@ export default function AllPets() {
                         ? "#FDB979"
                         : "#fc9797",
                   }}>
-                  <div className="petNameAndType">
-                    <span className="petName">
+                  <div className="nameAndType">
+                    <span className="name">
                       <b>{name}</b>
                     </span>
                     {type === "Dog" && "🐶"}

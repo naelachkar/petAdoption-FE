@@ -9,10 +9,8 @@
 .navContainer button {
   font-size: 1.125rem;
   border-bottom: none;
-  /* box-shadow: 0 0.375rem #0879bf;; */
 }
 
 .navContainer button:hover {
-  /* box-shadow: 0 0.375rem black; */
   border-bottom: none;
 }
