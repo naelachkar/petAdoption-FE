@@ -212,6 +212,7 @@ export default function PetContextWrapper({ children }) {
         setToggleEditPet,
         addPet,
         editPet,
+        setCurrentPet
       }}>
       {children}
     </PetContext.Provider>

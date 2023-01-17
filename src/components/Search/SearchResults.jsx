@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { PetContext } from "../Pet/PetContext";
 import { SearchContext } from "./SearchContext";
 
 export default function SearchResults() {
   const navigate = useNavigate();
   const { searchedPets } = useContext(SearchContext);
+  const { setCurrentPet } = useContext(PetContext);
 
   if (!searchedPets) return;
 
@@ -33,7 +35,13 @@ export default function SearchResults() {
               </div>
               <span>{adoptionStatus}</span>
             </div>
-            <button onClick={() => navigate(`/pet?id=${_id}`)}>See more</button>
+            <button
+              onClick={() => {
+                setCurrentPet("");
+                navigate(`/pet?id=${_id}`);
+              }}>
+              See more
+            </button>
           </div>
         );
       })}

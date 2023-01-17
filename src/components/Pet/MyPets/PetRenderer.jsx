@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { PetContext } from "../PetContext";
 
 export default function PetRenderer({ _id, picture, name, type }) {
   const navigate = useNavigate();
+  const { setCurrentPet } = useContext(PetContext);
 
   return (
     <>
@@ -15,7 +17,13 @@ export default function PetRenderer({ _id, picture, name, type }) {
           {type === "Cat" && "🐱"}
         </div>
       </div>
-      <button onClick={() => navigate(`/pet?id=${_id}`)}>See more</button>
+      <button
+        onClick={() => {
+          setCurrentPet("");
+          navigate(`/pet?id=${_id}`);
+        }}>
+        See more
+      </button>
     </>
   );
 }

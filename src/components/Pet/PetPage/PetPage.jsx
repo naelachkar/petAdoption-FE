@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import "./Pet.css";
 import NavBar from "../../NavBar/NavBar";
 import { PetContext } from "../PetContext";
@@ -8,14 +7,12 @@ import PetSaveButton from "./PetSaveButton";
 import EditPetButton from "../../Admin/EditPetButton";
 
 export default function Pet() {
-  const location = useLocation();
   const currentId = window.location.search.slice(4);
-  const { getPetById, currentPet, myPets } = useContext(PetContext);
-  const admin = JSON.parse(localStorage.getItem("admin"));
+  const { getPetById, currentPet, setCurrentPet, myPets } = useContext(PetContext);
 
   useEffect(() => {
     getPetById(currentId);
-  }, [myPets]);
+  }, []);
 
   if (!currentPet) return <NavBar />;
 

@@ -1,9 +1,11 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { PetContext } from "../Pet/PetContext";
 import { AdminContext } from "./AdminContext";
 
 export default function AllPets() {
   const { allPets, getAllPets } = useContext(AdminContext);
+  const { setCurrentPet } = useContext(PetContext);
 
   useEffect(() => {
     getAllPets();
@@ -41,7 +43,11 @@ export default function AllPets() {
                   </div>
                   <span>{adoptionStatus}</span>
                 </div>
-                <button onClick={() => navigate(`/pet?id=${_id}`)}>
+                <button
+                  onClick={() => {
+                    setCurrentPet("");
+                    navigate(`/pet?id=${_id}`);
+                  }}>
                   See more
                 </button>
               </div>
