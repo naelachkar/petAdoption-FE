@@ -123,6 +123,9 @@ export default function PetContextWrapper({ children }) {
   async function addPet(e) {
     e.preventDefault();
     let myInputs = { ...inputs };
+    if (myInputs.type === "" || myInputs.type === undefined) {
+      myInputs.type = "Dog"
+    }
 
     const formData = new FormData();
     for (let key in myInputs) {
